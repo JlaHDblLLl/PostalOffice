@@ -1,4 +1,4 @@
-package by.grsu.lancevich.postalofice.db.model;
+package by.grsu.lancevich.postaloffice.db.model;
 
 public class Address {
 	private Integer id;

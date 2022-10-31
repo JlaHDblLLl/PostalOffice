@@ -1,4 +1,4 @@
-package by.grsu.lancevich.postalofice.db.model;
+package by.grsu.lancevich.postaloffice.db.model;
 
 import java.sql.Timestamp;
 
