@@ -1,6 +1,5 @@
 package by.grsu.lancevich.postaloffice.db.model;
 import java.sql.Date;
-import java.sql.Timestamp;
 
 
 public class Item {
