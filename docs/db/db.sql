@@ -1,0 +1,55 @@
+CREATE TABLE person (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	name VARCHAR NOT NULL,
+	ser_name VARCHAR NOT NULL,
+	patronymic VARCHAR NOT NULL,
+	address_id INTEGER NOT NULL REFERENCES address(id),
+	pasport_number VARCHAR NOT NULL,
+	indetification_number VARCHAR NOT NULL,
+	passport_authority VARCHAR NOT NULL,
+	created DATETIME PRIMARY KEY NOT NULL,
+	updated DATETIME PRIMARY KEY NOT NULL
+);
+
+CREATE TABLE address (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	country VARCHAR NOT NULL,
+	town VARCHAR NOT NULL,
+	street VARCHAR NOT NULL,
+	house VARCHAR NOT NULL,
+	flat VARCHAR NOT NULL
+);
+
+CREATE TABLE parcel (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	sender_id INTEGER NOT NULL REFERENCES person(id),
+	receiver_id INTEGER NOT NULL REFERENCES person(id), 
+	date_send DATETIME NOT NULL,
+	date_accept DATETIME NOT NULL,
+	fragile INTEGER NOT NULL,
+	length FLOAT NOT NULL,
+	width FLOAT NOT NULL,
+	height FLOAT NOT NULL,
+	weight FLOAT NOT NULL,
+	expiration_date DATETIME NOT NULL,
+	address_from_id INTEGER NOT NULL REFERENCES address(id),
+	address_to_id INTEGER NOT NULL REFERENCES address(id),
+	created DATETIME NOT NULL,
+	updated DATETIME NOT NULL
+);
+
+CREATE TABLE item (
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	parcel_id INTEGER NOT NULL REFERENCES parcel(id),
+	weight FLOAT NOT NULL,
+	length FLOAT NOT NULL, 
+	width FLOAT NOT NULL,
+	height FLOAT NOT NULL,
+	fragile FLOAT NOT NULL,
+	expiration_date DATETIME NOT NULL
+);
+
+
+
+
+
