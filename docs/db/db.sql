@@ -4,11 +4,11 @@ CREATE TABLE person (
 	ser_name VARCHAR NOT NULL,
 	patronymic VARCHAR NOT NULL,
 	address_id INTEGER NOT NULL REFERENCES address(id),
-	pasport_number VARCHAR NOT NULL,
+	passport_number VARCHAR NOT NULL,
 	indetification_number VARCHAR NOT NULL,
 	passport_authority VARCHAR NOT NULL,
-	created DATETIME PRIMARY KEY NOT NULL,
-	updated DATETIME PRIMARY KEY NOT NULL
+	created DATETIME NOT NULL,
+	updated DATETIME NOT NULL
 );
 
 CREATE TABLE address (

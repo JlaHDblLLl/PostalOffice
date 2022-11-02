@@ -24,7 +24,7 @@ public class AddressDaoImpl extends AbstractDao implements IDao<Integer, Address
 		@Override
 		public void insert(Address entity) {
 			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("insert into address(country, town, street, house, flat)");
+				PreparedStatement pstmt = c.prepareStatement("insert into address(country, town, street, house, flat) values(?,?,?,?,?)");
 				pstmt.setString(1, entity.getCountry());
 				pstmt.setString(2, entity.getTown());
 				pstmt.setString(3, entity.getStreet());
@@ -40,7 +40,7 @@ public class AddressDaoImpl extends AbstractDao implements IDao<Integer, Address
 		@Override
 		public void update(Address entity) {
 			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("update address country=?, town=?, street=?, house=?, flat=? where id=?");
+				PreparedStatement pstmt = c.prepareStatement("update address set country=?, town=?, street=?, house=?, flat=? where id=?");
 				pstmt.setString(1, entity.getCountry());
 				pstmt.setString(2, entity.getTown());
 				pstmt.setString(3, entity.getStreet());
@@ -69,7 +69,7 @@ public class AddressDaoImpl extends AbstractDao implements IDao<Integer, Address
 		public Address getById(Integer id) {
 			Address entity = null;
 			try (Connection c = createConnection()) {
-				PreparedStatement pstmt = c.prepareStatement("select all from address where id=?");
+				PreparedStatement pstmt = c.prepareStatement("select * from address where id=?");
 				pstmt.setInt(1, id);
 
 				ResultSet rs = pstmt.executeQuery();
@@ -88,7 +88,7 @@ public class AddressDaoImpl extends AbstractDao implements IDao<Integer, Address
 		public List<Address> getAll() {
 			List<Address> entitiesList = new ArrayList<>();
 			try (Connection c = createConnection()) {
-				ResultSet rs = c.createStatement().executeQuery("select all from address");
+				ResultSet rs = c.createStatement().executeQuery("select * from address");
 				while (rs.next()) {
 					Address entity = rowToEntity(rs);
 					entitiesList.add(entity);

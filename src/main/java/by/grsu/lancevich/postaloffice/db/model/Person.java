@@ -8,7 +8,7 @@ public class Person {
 	private String ser_name;
 	private String patronymic;
 	private Integer address_id;
-	private String pasport_number;
+	private String passport_number;
 	private String indetification_number;
 	private String passport_authority;
 	private Timestamp created;
@@ -43,11 +43,11 @@ public class Person {
 	public void setAddress_id(Integer address_id) {
 		this.address_id = address_id;
 	}
-	public String getPasport_number() {
-		return pasport_number;
+	public String getPassport_number() {
+		return passport_number;
 	}
-	public void setPasport_number(String pasport_number) {
-		this.pasport_number = pasport_number;
+	public void setPassport_number(String pasport_number) {
+		this.passport_number = pasport_number;
 	}
 	public String getIndetification_number() {
 		return indetification_number;
@@ -76,7 +76,7 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person [id=" + id + ", name=" + name + ", ser_name=" + ser_name + ", patronymic=" + patronymic
-				+ ", address_id=" + address_id + ", pasport_number=" + pasport_number + ", indetification_number="
+				+ ", address_id=" + address_id + ", passport_number=" + passport_number + ", indetification_number="
 				+ indetification_number + ", passport_authority=" + passport_authority + ", created=" + created
 				+ ", updated=" + updated + "]";
 	}
