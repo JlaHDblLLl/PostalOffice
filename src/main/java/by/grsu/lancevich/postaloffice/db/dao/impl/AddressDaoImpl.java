@@ -13,10 +13,10 @@ import by.grsu.lancevich.postaloffice.db.model.Address;
 
 
 public class AddressDaoImpl extends AbstractDao implements IDao<Integer, Address> {
-	
-	
+
+
 		public static final AddressDaoImpl INSTANCE = new AddressDaoImpl();
-		
+
 		private AddressDaoImpl() {
 			super();
 		}

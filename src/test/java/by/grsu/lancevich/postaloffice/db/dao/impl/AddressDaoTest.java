@@ -17,7 +17,7 @@ public class AddressDaoTest extends AbstractTest{
 		entity.setStreet("Kabyak street");
 		entity.setHouse("35");
 		entity.setFlat("69");
-		
+
 		dao.insert(entity);
 		Assertions.assertNotNull(entity.getId());
 	}

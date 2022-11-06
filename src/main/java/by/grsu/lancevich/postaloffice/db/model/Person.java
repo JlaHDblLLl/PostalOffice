@@ -80,8 +80,8 @@ public class Person {
 				+ indetification_number + ", passport_authority=" + passport_authority + ", created=" + created
 				+ ", updated=" + updated + "]";
 	}
-	
-	
-	
+
+
+
 
 }

@@ -48,5 +48,5 @@ public class Address {
 		return "Address [id=" + id + ", country=" + country + ", town=" + town + ", street=" + street + ", house="
 				+ house + ", flat=" + flat + "]";
 	}
-	
+
 }
