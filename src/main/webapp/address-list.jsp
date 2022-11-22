@@ -1,25 +1,24 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
-<c:set var="pageTitle" value="List of parcels" scope="application" />
+<c:set var="pageTitle" value="List of address" scope="application" />
 
 <t:wrapper>
-	<h1>All postal items</h1>
+	<div class="center-align">
+		<h1>All addresses</h1>
+	</div>
 	<table class="highlight">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Place of departure</th>
-				<th>Place of acceptance</th>
-				<th>Passport details</th>
-				<th>Item</th>
-				<th>Parcel price</th>
-				<th>actions</th>
+				<th>Country</th>
+				<th>Town</th>
+				<th>Street</th>
+				<th>House</th>
+				<th>Flat</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<td>Alvin</td>
 				<td>Grodno</td>
 				<td>Paris</td>
 				<td>KH2918923</td>
@@ -27,31 +26,29 @@
 				<td>$0.87</td>
 				<td><a
 					class="btn-small btn-floating waves-effect waves-light blue"
-					title="ÑÐµÐ´Ð°ÐºÑÐ¸ÑÐ¾Ð²Ð°ÑÑ" href="edit.html"><i
+					title="item-edit-button" href="address-edit.jsp"><i
 						class="material-icons">edit</i></a></td>
 			</tr>
 			<tr>
-				<td>Maxim</td>
 				<td>Grodno</td>
-				<td>Minsk</td>
-				<td>KH2311009</td>
-				<td>Book</td>
-				<td>$12.1</td>
+				<td>Paris</td>
+				<td>KH2918923</td>
+				<td>Eclair</td>
+				<td>$0.87</td>
 				<td><a
 					class="btn-small btn-floating waves-effect waves-light blue"
-					title="ÑÐµÐ´Ð°ÐºÑÐ¸ÑÐ¾Ð²Ð°ÑÑ" href="edit.html"><i
+					title="item-edit-button" href="address-edit.jsp"><i
 						class="material-icons">edit</i></a></td>
 			</tr>
 			<tr>
-				<td>Alena</td>
 				<td>Grodno</td>
-				<td>Moskow</td>
-				<td>ÐÐ8923123</td>
-				<td>Cigarettes</td>
-				<td>$1.1</td>
+				<td>Paris</td>
+				<td>KH2918923</td>
+				<td>Eclair</td>
+				<td>$0.87</td>
 				<td><a
 					class="btn-small btn-floating waves-effect waves-light blue"
-					title="ÑÐµÐ´Ð°ÐºÑÐ¸ÑÐ¾Ð²Ð°ÑÑ" href="edit.html"><i
+					title="item-edit-button" href="address-edit.jsp"><i
 						class="material-icons">edit</i></a></td>
 			</tr>
 		</tbody>
@@ -60,7 +57,7 @@
 		<div class="col s12">
 			<div class="center-align">
 				<br> <a class="btn-floating btn-large waves-effect waves-light"
-					href="edit.html"><i class="material-icons">add</i></a>
+					href="address-edit.jsp"><i class="material-icons">add</i></a>
 			</div>
 		</div>
 	</div>

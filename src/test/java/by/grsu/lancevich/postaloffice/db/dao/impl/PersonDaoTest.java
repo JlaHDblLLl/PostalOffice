@@ -15,7 +15,7 @@ public class PersonDaoTest extends AbstractTest{
 	public void testInsert() {
 		Person entity = new Person();
 		entity.setName("Maxim");
-		entity.setSer_name("Lancevich");
+		entity.setSurname("Lancevich");
 		entity.setPatronymic("Andreevich");
 		entity.setAddress_id(saveAddress("").getId());
 		entity.setPassport_number("KH2819234");
@@ -31,7 +31,7 @@ public class PersonDaoTest extends AbstractTest{
 	public void testUpdate() {
 		Person entity = new Person();
 		entity.setName("Maxim");
-		entity.setSer_name("Lancevich");
+		entity.setSurname("Lancevich");
 		entity.setPatronymic("Andreevich");
 		entity.setAddress_id(saveAddress("").getId());
 		entity.setPassport_number("KH2819234");
@@ -58,7 +58,7 @@ public class PersonDaoTest extends AbstractTest{
 	public void testDelete() {
 		Person entity = new Person();
 		entity.setName("Maxim");
-		entity.setSer_name("Lancevich");
+		entity.setSurname("Lancevich");
 		entity.setPatronymic("Andreevich");
 		entity.setAddress_id(saveAddress("").getId());
 		entity.setPassport_number("KH2819234");
@@ -77,7 +77,7 @@ public class PersonDaoTest extends AbstractTest{
 	public void testGetById() {
 		Person entity = new Person();
 		entity.setName("Maxim");
-		entity.setSer_name("Lancevich");
+		entity.setSurname("Lancevich");
 		entity.setPatronymic("Andreevich");
 		entity.setAddress_id(saveAddress("").getId());
 		entity.setPassport_number("KH2819234");
@@ -90,7 +90,7 @@ public class PersonDaoTest extends AbstractTest{
 		Person selectedEntity = personDao.getById(entity.getId());
 
 		Assertions.assertEquals(entity.getName(), selectedEntity.getName());
-		Assertions.assertEquals(entity.getSer_name(), selectedEntity.getSer_name());
+		Assertions.assertEquals(entity.getSurname(), selectedEntity.getSurname());
 		Assertions.assertEquals(entity.getPatronymic(), selectedEntity.getPatronymic());
 		Assertions.assertEquals(entity.getAddress_id(), selectedEntity.getAddress_id());
 		Assertions.assertEquals(entity.getPassport_number(), selectedEntity.getPassport_number());
@@ -106,7 +106,7 @@ public class PersonDaoTest extends AbstractTest{
 		for (int i = 1; i <= expectedCount; i = i + 1) {
 			Person entity = new Person();
 			entity.setName(i + ": " + "Maxim");
-			entity.setSer_name("Lancevich");
+			entity.setSurname("Lancevich");
 			entity.setPatronymic("Andreevich");
 			entity.setAddress_id(saveAddress(i + ": ").getId());
 			entity.setPassport_number("KH2819234");

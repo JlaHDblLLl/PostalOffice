@@ -12,37 +12,45 @@
 	rel="stylesheet">
 </head>
 <script src="sample.js"></script>
-<nav class="light-blue lighten-1" role="navigation">
-	<ul id="dropdown1" class="dropdown-content">
-		<li><a href="#!">one</a></li>
-		<li><a href="#!">two</a></li>
-		<li><a href="#!">three</a></li>
+<nav class="deep-purple lighten-2" role="navigation">
+	
+	<ul id="about_dropdown" class="dropdown-content">
+		<li><a href="#!">Company</a></li>
+		<li><a href="#!">Contacts</a></li>
+		<li><a href="#!">Our policy</a></li>
 	</ul>
+	<ul id="mobile_about_dropdown" class="dropdown-content">
+		<li><a href="#!">Company</a></li>
+		<li><a href="#!">Contacts</a></li>
+		<li><a href="#!">Our policy</a></li>
+	</ul>
+	
 	<div class="nav-wrapper container">
 		<a id="logo-container" href="index.jsp" class="brand-logo center">PostalOficeGrodno</a>
 		<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 		<ul class="left hide-on-med-and-down">
-			<li><a href="#">Parcels</a></li>
-			<li><a href="#">User data</a></li>
-			<li><a class="dropdown-trigger" href="#!"
-				data-target="dropdown1">About<i class="material-icons right">arrow_drop_down</i></a></li>
+			<li><a href="parcel-list.jsp">Parcels</a></li>
+			<li><a href="item-list.jsp">Items</a></li>
+			<li><a href="userData-list.jsp">User data</a></li>
+			<li><a href="address-list.jsp">Addresses</a></li>
 		</ul>
 		<ul class="right hide-on-med-and-down">
+			<li><a class="dropdown-trigger" href="#!" data-target="about_dropdown">About<i class="material-icons right">arrow_drop_down</i></a></li>
 			<li><a href="#">Login</a></li>
-			<li><a href="#"><i class="material-icons right">perm_identity</i>Sign
-					in</a></li>
+			<li><a href="#"><i class="material-icons right">perm_identity</i>Sign in</a></li>
 		</ul>
 	</div>
+	
 	<ul class="sidenav" id="mobile-demo">
-		<li><a href="#">Parcels</a></li>
-		<li><a href="#">User data</a></li>
-		<li><a class="dropdown-trigger" href="#!" data-target="dropdown1">About<i
-				class="material-icons right">arrow_drop_down</i></a></li>
-		<li class="divider"></li>
+		<li><a href="parcel-list.jsp">Parcels</a></li>
+		<li><a href="item-list.jsp">Items</a></li>
+		<li><a href="userData-list.jsp">User data</a></li>
+		<li><a href="address-list.jsp">Addresses</a></li>
+		<li><a class="dropdown-trigger" href="#!" data-target="mobile_about_dropdown">About<i class="material-icons right">arrow_drop_down</i></a></li>
+		<li><div class="divider"></div></li>
 		<li><a href="#">Login</a></li>
-		<li><a href="#"><i class="material-icons right">perm_identity</i>Sign
-				in</a></li>
+		<li><a href="#"><i class="material-icons right">perm_identity</i>Sign in</a></li>
 	</ul>
 </nav>
 <div class="section no-pad-bot" id="index-banner">

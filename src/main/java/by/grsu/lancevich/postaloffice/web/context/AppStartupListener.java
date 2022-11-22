@@ -38,7 +38,7 @@ public class AppStartupListener implements ServletContextListener {
 	}
 
 	private void loadInitialData() {
-		
+
 		createItem("");
 		System.out.println("initial data created");
 	}
@@ -61,10 +61,10 @@ public class AppStartupListener implements ServletContextListener {
 	public void contextDestroyed(ServletContextEvent sce) {
 		System.out.println("contextDestroyed");
 	}
-	
-	
-	
-	
+
+
+
+
 	private Address createAddress(String name) {
 		Address entity = new Address();
 		entity.setCountry(name + "Belarus");
@@ -79,7 +79,7 @@ public class AppStartupListener implements ServletContextListener {
 	private Person createPerson(String name) {
 		Person entity = new Person();
 		entity.setName(name + "Maxim");
-		entity.setSer_name("Lancevich");
+		entity.setSurname("Lancevich");
 		entity.setPatronymic("Andreevich");
 		entity.setAddress_id(createAddress(name + ": ").getId());
 		entity.setPassport_number("KH2819234");

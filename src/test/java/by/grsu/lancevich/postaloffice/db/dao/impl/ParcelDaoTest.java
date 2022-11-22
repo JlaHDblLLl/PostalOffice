@@ -162,7 +162,7 @@ public class ParcelDaoTest extends AbstractTest{
 	private Person savePerson(String name) {
 		Person entity = new Person();
 		entity.setName(name + "Maxim");
-		entity.setSer_name("Lancevich");
+		entity.setSurname("Lancevich");
 		entity.setPatronymic("Andreevich");
 		entity.setAddress_id(saveAddress(name + ": ").getId());
 		entity.setPassport_number("KH2819234");

@@ -24,7 +24,7 @@ public class PersonDaoImpl extends AbstractDao implements IDao<Integer, Person>{
 			PreparedStatement pstmt = c
 					.prepareStatement("insert into person(name, ser_name, patronymic, address_id, passport_number, indetification_number, passport_authority, created, updated) values(?,?,?,?,?,?,?,?,?)");
 			pstmt.setString(1, entity.getName());
-			pstmt.setString(2, entity.getSer_name());
+			pstmt.setString(2, entity.getSurname());
 			pstmt.setString(3, entity.getPatronymic());
 			pstmt.setInt(4, entity.getAddress_id());
 			pstmt.setString(5, entity.getPassport_number());
@@ -45,7 +45,7 @@ public class PersonDaoImpl extends AbstractDao implements IDao<Integer, Person>{
 		try (Connection c = createConnection()) {
 			PreparedStatement pstmt = c.prepareStatement("update person set name=?, ser_name=?, patronymic=?, address_id=?, passport_number=?, indetification_number=?, passport_authority=?, updated=? where id=?");
 			pstmt.setString(1, entity.getName());
-			pstmt.setString(2, entity.getSer_name());
+			pstmt.setString(2, entity.getSurname());
 			pstmt.setString(3, entity.getPatronymic());
 			pstmt.setInt(4, entity.getAddress_id());
 			pstmt.setString(5, entity.getPassport_number());
@@ -110,7 +110,7 @@ public class PersonDaoImpl extends AbstractDao implements IDao<Integer, Person>{
 		Person entity = new Person();
 		entity.setId(rs.getInt("id"));
 		entity.setName(rs.getString("name"));
-		entity.setSer_name(rs.getString("ser_name"));
+		entity.setSurname(rs.getString("ser_name"));
 		entity.setPatronymic(rs.getString("patronymic"));
 		entity.setAddress_id(rs.getInt("address_id"));
 		entity.setPassport_number(rs.getString("passport_number"));

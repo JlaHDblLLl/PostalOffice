@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 public class Person {
 	private Integer id;
 	private String name;
-	private String ser_name;
+	private String surname;
 	private String patronymic;
 	private Integer address_id;
 	private String passport_number;
@@ -25,11 +25,11 @@ public class Person {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSer_name() {
-		return ser_name;
+	public String getSurname() {
+		return surname;
 	}
-	public void setSer_name(String ser_name) {
-		this.ser_name = ser_name;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 	public String getPatronymic() {
 		return patronymic;
@@ -75,7 +75,7 @@ public class Person {
 	}
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", name=" + name + ", ser_name=" + ser_name + ", patronymic=" + patronymic
+		return "Person [id=" + id + ", name=" + name + ", ser_name=" + surname + ", patronymic=" + patronymic
 				+ ", address_id=" + address_id + ", passport_number=" + passport_number + ", indetification_number="
 				+ indetification_number + ", passport_authority=" + passport_authority + ", created=" + created
 				+ ", updated=" + updated + "]";
