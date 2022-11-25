@@ -81,7 +81,7 @@ public class AppStartupListener implements ServletContextListener {
 		entity.setName(name + "Maxim");
 		entity.setSurname("Lancevich");
 		entity.setPatronymic("Andreevich");
-		entity.setAddress_id(createAddress(name + ": ").getId());
+		entity.setAddress_id(createAddress(name).getId());
 		entity.setPassport_number("KH2819234");
 		entity.setIndetification_number("5231102L000PS0");
 		entity.setPassport_authority("Octyabrski ROVD");

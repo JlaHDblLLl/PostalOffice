@@ -8,6 +8,7 @@ public class Person {
 	private String surname;
 	private String patronymic;
 	private Integer address_id;
+	private String address_name;
 	private String passport_number;
 	private String indetification_number;
 	private String passport_authority;
@@ -79,6 +80,12 @@ public class Person {
 				+ ", address_id=" + address_id + ", passport_number=" + passport_number + ", indetification_number="
 				+ indetification_number + ", passport_authority=" + passport_authority + ", created=" + created
 				+ ", updated=" + updated + "]";
+	}
+	public String getAddress_name() {
+		return address_name;
+	}
+	public void setAddress_name(String address_name) {
+		this.address_name = address_name;
 	}
 
 

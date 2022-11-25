@@ -17,3 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
  document.addEventListener('DOMContentLoaded', function() {
 		M.FormSelect.init(document.querySelectorAll('select'), {});
 });
+function sendHTTPDelete(url) {
+	fetch(window.location.origin + url, {
+		method: 'DELETE',
+	}).then(() => {
+		window.location.reload()
+	});
+}

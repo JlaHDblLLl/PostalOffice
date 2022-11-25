@@ -30,10 +30,10 @@
 		<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 		<ul class="left hide-on-med-and-down">
-			<li><a href="parcel-list.jsp">Parcels</a></li>
-			<li><a href="item-list.jsp">Items</a></li>
-			<li><a href="userData-list.jsp">User data</a></li>
-			<li><a href="address-list.jsp">Addresses</a></li>
+			<li><a href="parcels">Parcels</a></li>
+			<li><a href="items">Items</a></li>
+			<li><a href="userData">User data</a></li>
+			<li><a href="addresses">Addresses</a></li>
 		</ul>
 		<ul class="right hide-on-med-and-down">
 			<li><a class="dropdown-trigger" href="#!" data-target="about_dropdown">About<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -43,10 +43,10 @@
 	</div>
 	
 	<ul class="sidenav" id="mobile-demo">
-		<li><a href="parcel-list.jsp">Parcels</a></li>
-		<li><a href="item-list.jsp">Items</a></li>
-		<li><a href="userData-list.jsp">User data</a></li>
-		<li><a href="address-list.jsp">Addresses</a></li>
+		<li><a href="parcels">Parcels</a></li>
+		<li><a href="items">Items</a></li>
+		<li><a href="userData">User data</a></li>
+		<li><a href="addresses">Addresses</a></li>
 		<li><a class="dropdown-trigger" href="#!" data-target="mobile_about_dropdown">About<i class="material-icons right">arrow_drop_down</i></a></li>
 		<li><div class="divider"></div></li>
 		<li><a href="#">Login</a></li>

@@ -1,40 +1,48 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
 <c:set var="pageTitle" value="Edit page" scope="application" />
 
 <t:wrapper>
-	<div class="row">
-		<form class="col s12">
-			<div class="center-align">
-				<h5>Parcel data</h5>
-			</div>
-			<div class="row">
-				<div class="input-field col s3">
-					<input id="country" type="text" class="validate"> <label
-						for="country">Country</label>
+	<c:choose>
+		<c:when test="${empty dto.id}">
+			<div class="center-align"><h4>Create address</h4></div>
+		</c:when>
+		<c:otherwise>
+			<div class="center-align"><h4>Edit address #${dto.id}</h4></div>
+		</c:otherwise>
+	</c:choose>
+	<form class="col s12" method="post" action="/addresses">
+		<div class="row">
+			<input type="hidden" name="id" value="${dto.id}" />
+				<div class="center-align">
+					<h5>Parcel data</h5>
 				</div>
-				<div class="input-field col s3">
-					<input id="town" type="text" class="validate"> <label
-						for="town">Town</label>
+				<div class="row">
+					<div class="input-field col s2">
+						<input type="text" name="country"> <label for="country">Country</label>
+					</div>
+					<div class="input-field col s2">
+						<input type="text" name="town"> <label for="town">Town</label>
+					</div>
+					<div class="input-field col s3">
+						<input type="text" name="street"> <label for="street">Street</label>
+					</div>
+					<div class="input-field col s2">
+						<input type="text" name="house"> <label for="house">House</label>
+					</div>
+					<div class="input-field col s2">
+						<input type="text" name="flat"> <label for="flat">Flat</label>
+					</div>
 				</div>
-				<div class="input-field col s3">
-					<input id="street" type="text" class="validate"> <label
-						for="street">Street</label>
-				</div>
-				<div class="input-field col s3">
-					<input id="house flat" type="text" class="validate"> <label
-						for="house flat">House and flat</label>
-				</div>
-			</div>
-		</form>
-	</div>
-	<div class="row">
-		<div class="col s12 input-field center-align">
-			<a class="btn waves-effect waves-light red" href="address-list.jsp"><i
-				class="material-icons left">list</i>To list</a> <a
-				class="btn waves-effect waves-light green" href="#"><i
-				class="material-icons left">save</i>Save</a>
 		</div>
-	</div>
+		<div class="row">
+			<div class="col s12 input-field center-align">
+				<a class="btn waves-effect waves-light red" href="/addresses"><i class="material-icons left">list</i>back</a>&nbsp;
+					<button class="btn waves-effect waves-light" type="submit">
+						<i class="material-icons left">save</i>Save
+					</button>
+			</div>
+		</div>
+	</form>
 </t:wrapper>

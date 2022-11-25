@@ -2,11 +2,15 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.google.common.base.Strings;
 
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
 import by.grsu.lancevich.postaloffice.db.dao.impl.AddressDaoImpl;
@@ -17,51 +21,77 @@ public class AddressServlet extends HttpServlet {
 
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		Integer addressId = Integer.parseInt(req.getParameter("id")); // read request parameter
-		Address addressById = addressDao.getById(addressId); // from DB
-
-		res.setContentType("text/html");// setting the content type
-
-		PrintWriter pw = res.getWriter();// get the stream to write the data
-
-		// writing html in the stream
-		pw.println("<html><body>");
-
-		if (addressById == null) {
-			pw.println("no brand by id=" + addressId);
+		System.out.println("doGet");
+		String viewParam = req.getParameter("view");
+		if ("edit".equals(viewParam)) {
+			handleEditView(req, res);
 		} else {
-			pw.println(addressById.toString());
+			handleListView(req, res);
 		}
+	}
+	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		List<Address> addresses = addressDao.getAll(); 
 
-		pw.println("</body></html>");
-		pw.close();// closing the stream
+		List<Address> dtos = addresses.stream().map((entity) -> {
+			Address dto = new Address();
+			dto.setId(entity.getId());
+			dto.setCountry(entity.getCountry());
+			dto.setTown(entity.getTown());
+			dto.setStreet(entity.getStreet());
+			dto.setHouse(entity.getHouse());
+			dto.setFlat(entity.getFlat());
+			return dto;
+		}).collect(Collectors.toList());
+
+		req.setAttribute("list", dtos);
+		req.getRequestDispatcher("address-list.jsp").forward(req, res);
+	}
+
+	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		String addressIdStr = req.getParameter("id");
+		Address dto = new Address();
+		if (!Strings.isNullOrEmpty(addressIdStr)) {
+			Integer addressId = Integer.parseInt(addressIdStr);
+			Address entity = addressDao.getById(addressId);
+			dto.setId(entity.getId());
+			dto.setCountry(entity.getCountry());
+			dto.setTown(entity.getCountry());
+			dto.setStreet(entity.getCountry());
+			dto.setHouse(entity.getCountry());
+			dto.setFlat(entity.getCountry());
+		}
+		req.setAttribute("dto", dto);
+		req.getRequestDispatcher("address-edit.jsp").forward(req, res);
 	}
 
 	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		res.setContentType("text/html");
-		PrintWriter pw = res.getWriter();// get the stream to write the data
-		pw.println("<html><body>");
-		try {
-			String paramCountry = req.getParameter("country");
-			String paramTown = req.getParameter("town");
-			String paramStreet = req.getParameter("street");
-			String paramHouse = req.getParameter("house");
-			String paramFlat = req.getParameter("flat");
-			Address addressEntity = new Address();
-			addressEntity.setCountry(paramCountry);
-			addressEntity.setTown(paramTown);
-			addressEntity.setStreet(paramStreet);
-			addressEntity.setHouse(paramHouse);
-			addressEntity.setFlat(paramFlat);
-			addressDao.insert(addressEntity);
-			pw.println("Saved:" + addressEntity);
-
-		} catch (Exception e) {
-			pw.println("Error:" + e.toString());
+		System.out.println("doPost");
+		Address address = new Address();
+		String addressIdStr = req.getParameter("id");
+		String paramCountry = req.getParameter("country");
+		String paramTown = req.getParameter("town");
+		String paramStreet = req.getParameter("street");
+		String paramHouse = req.getParameter("house");
+		String paramFlat = req.getParameter("flat");
+		address.setCountry(paramCountry);
+		address.setTown(paramTown);
+		address.setStreet(paramStreet);
+		address.setHouse(paramHouse);
+		address.setFlat(paramFlat);
+		
+		if (Strings.isNullOrEmpty(addressIdStr)) {
+			addressDao.insert(address);
+		} else {
+			address.setId(Integer.parseInt(addressIdStr));
+			addressDao.update(address);
 		}
-
-		pw.println("</body></html>");
-		pw.close();
+		res.sendRedirect("/addresses");
+	}
+	
+	@Override
+	public void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		System.out.println("doDelete");
+		addressDao.delete(Integer.parseInt(req.getParameter("id")));
 	}
 }

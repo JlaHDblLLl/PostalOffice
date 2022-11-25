@@ -6,12 +6,22 @@
 	<listener>
 		<listener-class>by.grsu.lancevich.postaloffice.web.context.AppStartupListener</listener-class>
 	</listener>
+	
 	<servlet>
 		<servlet-name>AddressServlet</servlet-name>
 		<servlet-class>by.grsu.lancevich.postaloffice.web.servlet.AddressServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AddressServlet</servlet-name>
-		<url-pattern>/address</url-pattern>
+		<url-pattern>/addresses</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>PersonServlet</servlet-name>
+		<servlet-class>by.grsu.lancevich.postaloffice.web.servlet.PersonServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>PersonServlet</servlet-name>
+		<url-pattern>/userdata</url-pattern>
 	</servlet-mapping>
 </web-app>
