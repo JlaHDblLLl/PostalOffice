@@ -1,9 +1,8 @@
 package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Date;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +18,7 @@ import by.grsu.lancevich.postaloffice.db.dao.impl.AddressDaoImpl;
 import by.grsu.lancevich.postaloffice.db.dao.impl.PersonDaoImpl;
 import by.grsu.lancevich.postaloffice.db.model.Address;
 import by.grsu.lancevich.postaloffice.db.model.Person;
+import by.grsu.lancevich.postaloffice.web.dto.UserdataDto;
 
 public class PersonServlet extends HttpServlet {
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
@@ -35,10 +35,10 @@ public class PersonServlet extends HttpServlet {
 		}
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Person> persons = personDao.getAll(); 
+		List<Person> persons = personDao.getAll();
 
-		List<Person> dtos = persons.stream().map((entity) -> {
-			Person dto = new Person();
+		List<UserdataDto> dtos = persons.stream().map((entity) -> {
+			UserdataDto dto = new UserdataDto();
 			dto.setId(entity.getId());
 			dto.setName(entity.getName());
 			dto.setSurname(entity.getSurname());
@@ -48,7 +48,7 @@ public class PersonServlet extends HttpServlet {
 			dto.setPassport_authority(entity.getPassport_authority());
 			dto.setCreated(entity.getCreated());
 			dto.setUpdated(entity.getUpdated());
-			
+
 			Address address = addressDao.getById(entity.getAddress_id());
 			dto.setAddress_name(address.toString());
 			return dto;
@@ -60,7 +60,7 @@ public class PersonServlet extends HttpServlet {
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String personIdStr = req.getParameter("id");
-		Person dto = new Person();
+		UserdataDto dto = new UserdataDto();
 		if (!Strings.isNullOrEmpty(personIdStr)) {
 			Integer personId = Integer.parseInt(personIdStr);
 			Person entity = personDao.getById(personId);
@@ -76,7 +76,20 @@ public class PersonServlet extends HttpServlet {
 			dto.setAddress_id(entity.getAddress_id());
 		}
 		req.setAttribute("dto", dto);
+		req.setAttribute("allAddresses", getAllAddressesDtos());
 		req.getRequestDispatcher("userData-edit.jsp").forward(req, res);
+	}
+	private List<Address> getAllAddressesDtos() {
+		return addressDao.getAll().stream().map((entity) -> {
+			Address dto = new Address();
+			dto.setId(entity.getId());
+			dto.setCountry(entity.getCountry());
+			dto.setTown(entity.getCountry());
+			dto.setStreet(entity.getCountry());
+			dto.setHouse(entity.getCountry());
+			dto.setFlat(entity.getCountry());
+			return dto;
+		}).collect(Collectors.toList());
 	}
 
 	@Override
@@ -85,7 +98,7 @@ public class PersonServlet extends HttpServlet {
 		Person person = new Person();
 		String personIdStr = req.getParameter("id");
 		String addressIdStr = req.getParameter("address_id");
-		
+
 		person.setName(req.getParameter("name"));
 		person.setSurname(req.getParameter("surname"));
 		person.setPatronymic(req.getParameter("patronymic"));
@@ -94,7 +107,7 @@ public class PersonServlet extends HttpServlet {
 		person.setPassport_authority(req.getParameter("passport_authority"));
 		person.setUpdated(new Timestamp(new Date().getTime()));
 		person.setAddress_id(addressIdStr == null ? null : Integer.parseInt(addressIdStr));
-		
+
 		if (Strings.isNullOrEmpty(personIdStr)) {
 			person.setCreated(new Timestamp(new Date().getTime()));
 			personDao.insert(person);
@@ -104,7 +117,7 @@ public class PersonServlet extends HttpServlet {
 		}
 		res.sendRedirect("/userdata");
 	}
-	
+
 	@Override
 	public void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doDelete");

@@ -1,7 +1,6 @@
 package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +29,7 @@ public class AddressServlet extends HttpServlet {
 		}
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Address> addresses = addressDao.getAll(); 
+		List<Address> addresses = addressDao.getAll();
 
 		List<Address> dtos = addresses.stream().map((entity) -> {
 			Address dto = new Address();
@@ -55,10 +54,10 @@ public class AddressServlet extends HttpServlet {
 			Address entity = addressDao.getById(addressId);
 			dto.setId(entity.getId());
 			dto.setCountry(entity.getCountry());
-			dto.setTown(entity.getCountry());
-			dto.setStreet(entity.getCountry());
-			dto.setHouse(entity.getCountry());
-			dto.setFlat(entity.getCountry());
+			dto.setTown(entity.getTown());
+			dto.setStreet(entity.getStreet());
+			dto.setHouse(entity.getHouse());
+			dto.setFlat(entity.getFlat());
 		}
 		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("address-edit.jsp").forward(req, res);
@@ -79,7 +78,7 @@ public class AddressServlet extends HttpServlet {
 		address.setStreet(paramStreet);
 		address.setHouse(paramHouse);
 		address.setFlat(paramFlat);
-		
+
 		if (Strings.isNullOrEmpty(addressIdStr)) {
 			addressDao.insert(address);
 		} else {
@@ -88,7 +87,7 @@ public class AddressServlet extends HttpServlet {
 		}
 		res.sendRedirect("/addresses");
 	}
-	
+
 	@Override
 	public void doDelete(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doDelete");

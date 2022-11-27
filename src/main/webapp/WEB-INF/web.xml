@@ -24,4 +24,22 @@
 		<servlet-name>PersonServlet</servlet-name>
 		<url-pattern>/userdata</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ParcelServlet</servlet-name>
+		<servlet-class>by.grsu.lancevich.postaloffice.web.servlet.ParcelServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ParcelServlet</servlet-name>
+		<url-pattern>/parcels</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ItemServlet</servlet-name>
+		<servlet-class>by.grsu.lancevich.postaloffice.web.servlet.ItemServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ItemServlet</servlet-name>
+		<url-pattern>/items</url-pattern>
+	</servlet-mapping>
 </web-app>

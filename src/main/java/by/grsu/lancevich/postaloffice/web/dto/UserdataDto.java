@@ -1,13 +1,14 @@
-package by.grsu.lancevich.postaloffice.db.model;
+package by.grsu.lancevich.postaloffice.web.dto;
 
 import java.sql.Timestamp;
 
-public class Person {
+public class UserdataDto {
 	private Integer id;
 	private String name;
 	private String surname;
 	private String patronymic;
 	private Integer address_id;
+	private String address_name;
 	private String passport_number;
 	private String indetification_number;
 	private String passport_authority;
@@ -73,14 +74,17 @@ public class Person {
 	public void setUpdated(Timestamp updated) {
 		this.updated = updated;
 	}
+	public String getAddress_name() {
+		return address_name;
+	}
+	public void setAddress_name(String address_name) {
+		this.address_name = address_name;
+	}
 	@Override
 	public String toString() {
-		return "Person	[id=" + id + ", name=" + name + ", ser_name=" + surname + ", patronymic=" + patronymic
-				+ ", address_id=" + address_id + ", passport_number=" + passport_number + ", indetification_number="
+		return "UserDate [id=" + id + ", name=" + name + ", ser_name=" + surname + ", patronymic=" + patronymic
+				+ ", address_name=" + address_name + ", passport_number=" + passport_number + ", indetification_number="
 				+ indetification_number + ", passport_authority=" + passport_authority + ", created=" + created
-				+ ", updated=" + updated + "]";
+				+ ", updated=" + updated +"]";
 	}
-
-
-
 }

@@ -32,7 +32,7 @@
 		<ul class="left hide-on-med-and-down">
 			<li><a href="parcels">Parcels</a></li>
 			<li><a href="items">Items</a></li>
-			<li><a href="userData">User data</a></li>
+			<li><a href="userdata">User data</a></li>
 			<li><a href="addresses">Addresses</a></li>
 		</ul>
 		<ul class="right hide-on-med-and-down">
@@ -45,7 +45,7 @@
 	<ul class="sidenav" id="mobile-demo">
 		<li><a href="parcels">Parcels</a></li>
 		<li><a href="items">Items</a></li>
-		<li><a href="userData">User data</a></li>
+		<li><a href="userdata">User data</a></li>
 		<li><a href="addresses">Addresses</a></li>
 		<li><a class="dropdown-trigger" href="#!" data-target="mobile_about_dropdown">About<i class="material-icons right">arrow_drop_down</i></a></li>
 		<li><div class="divider"></div></li>

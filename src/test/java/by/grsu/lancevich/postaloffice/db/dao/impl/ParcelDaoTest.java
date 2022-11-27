@@ -117,6 +117,7 @@ public class ParcelDaoTest extends AbstractTest{
 		Assertions.assertEquals(entity.getLength(), selectedEntity.getLength());
 		Assertions.assertEquals(entity.getWidth(), selectedEntity.getWidth());
 		Assertions.assertEquals(entity.getHeight(), selectedEntity.getHeight());
+		Assertions.assertEquals(entity.getWeight(), selectedEntity.getWeight());
 		Assertions.assertEquals(entity.getExpiration_date(), selectedEntity.getExpiration_date());
 		Assertions.assertEquals(entity.getAddress_from_id(), selectedEntity.getAddress_from_id());
 		Assertions.assertEquals(entity.getAddress_to_id(), selectedEntity.getAddress_to_id());

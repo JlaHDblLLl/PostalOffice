@@ -4,14 +4,23 @@
 <c:set var="pageTitle" value="Edit page" scope="application" />
 
 <t:wrapper>
+<c:choose>
+		<c:when test="${empty dto.id}">
+			<div class="center-align"><h4>Create item</h4></div>
+		</c:when>
+		<c:otherwise>
+			<div class="center-align"><h4>Edit item #${dto.id}</h4></div>
+		</c:otherwise>
+	</c:choose>
+<form class="col s12" method="post" action="/parcels">
 	<div class="row">
-		<form class="col s12">
+		<input type="hidden" name="id" value="${dto.id}" />
 			<div class="center-align">
 				<h5>Parcel data</h5>
 			</div>
 			<div class="row">
 				<div class="input-field col s12">
-					<input id="parcel_id" type="text" class="validate"> <label
+					<input name="parcel_id" type="text" value="${dto.parcel_id}"> <label
 						for="parcel_id">Parcel id</label>
 				</div>
 			</div>
@@ -20,7 +29,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input id="weight" type="text" class="validate"> <label
+					<input name="weight" type="text" value="${dto.weight}"> <label
 						for="weight">Weight</label>
 				</div>
 				<p class="center-align col s4">
@@ -29,7 +38,7 @@
 				</p>
 				<div class="input-field col s4">
 					<input placeholder="Until what time is it good"
-						id="expiration_date" type="text" class="datepicker"> <label
+						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
 						for="expiration_date">Expiration date</label>
 				</div>
 			</div>
@@ -38,26 +47,26 @@
 					<h5>Item size</h5>
 				</div>
 				<div class="input-field col s4">
-					<input id="length" type="text" class="validate"> <label
+					<input name="length" type="text" value="${dto.length}"> <label
 						for="length">Length</label>
 				</div>
 				<div class="input-field col s4">
-					<input id="width" type="text" class="validate"> <label
+					<input name="width" type="text" value="${dto.width}"> <label
 						for="width">Width</label>
 				</div>
 				<div class="input-field col s4">
-					<input id="height" type="text" class="validate"> <label
+					<input name="height" type="text" value="${dto.height}"> <label
 						for="height">Height</label>
 				</div>
 			</div>
-		</form>
 	</div>
 	<div class="row">
-		<div class="col s12 input-field center-align">
-			<a class="btn waves-effect waves-light red" href="item-list.jsp"><i
-				class="material-icons left">list</i>To list</a> <a
-				class="btn waves-effect waves-light green" href="#"><i
-				class="material-icons left">save</i>Save</a>
+			<div class="col s12 input-field center-align">
+				<a class="btn waves-effect waves-light red" href="/items"><i class="material-icons left">list</i>back</a>&nbsp;
+				<button class="btn waves-effect waves-light" type="submit">
+					<i class="material-icons left">save</i>save
+				</button>
+			</div>
 		</div>
-	</div>
+</form>
 </t:wrapper>
