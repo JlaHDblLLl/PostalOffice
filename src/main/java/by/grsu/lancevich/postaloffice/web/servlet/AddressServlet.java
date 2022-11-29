@@ -14,6 +14,7 @@ import com.google.common.base.Strings;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
 import by.grsu.lancevich.postaloffice.db.dao.impl.AddressDaoImpl;
 import by.grsu.lancevich.postaloffice.db.model.Address;
+import by.grsu.lancevich.postaloffice.web.ValidationUtils;
 
 public class AddressServlet extends HttpServlet {
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
@@ -21,6 +22,7 @@ public class AddressServlet extends HttpServlet {
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doGet");
+		
 		String viewParam = req.getParameter("view");
 		if ("edit".equals(viewParam)) {
 			handleEditView(req, res);
@@ -48,6 +50,12 @@ public class AddressServlet extends HttpServlet {
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String addressIdStr = req.getParameter("id");
+		
+		if (!ValidationUtils.isInteger(addressIdStr)) {
+			res.sendError(400); // send HTTP status 400 and close response
+			return;
+		}
+		
 		Address dto = new Address();
 		if (!Strings.isNullOrEmpty(addressIdStr)) {
 			Integer addressId = Integer.parseInt(addressIdStr);

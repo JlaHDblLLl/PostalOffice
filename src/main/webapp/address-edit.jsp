@@ -20,19 +20,19 @@
 				</div>
 				<div class="row">
 					<div class="input-field col s2">
-						<input type="text" name="country" value="${dto.country}"> <label for="country">Country</label>
+						<input type="text" name="country" value="${dto.country}" required> <label for="country">Country</label>
 					</div>
 					<div class="input-field col s2">
-						<input type="text" name="town" value="${dto.town}"> <label for="town">Town</label>
+						<input type="text" name="town" value="${dto.town}" required> <label for="town">Town</label>
 					</div>
 					<div class="input-field col s3">
-						<input type="text" name="street" value="${dto.street}">  <label for="street">Street</label>
+						<input type="text" name="street" value="${dto.street}" required>  <label for="street">Street</label>
 					</div>
 					<div class="input-field col s2">
-						<input type="text" name="house" value="${dto.house}"> <label for="house">House</label>
+						<input type="text" name="house" value="${dto.house}" required> <label for="house">House</label>
 					</div>
 					<div class="input-field col s2">
-						<input type="text" name="flat" value="${dto.flat}"> <label for="flat">Flat</label>
+						<input type="text" name="flat" value="${dto.flat}" required> <label for="flat">Flat</label>
 					</div>
 				</div>
 		</div>
