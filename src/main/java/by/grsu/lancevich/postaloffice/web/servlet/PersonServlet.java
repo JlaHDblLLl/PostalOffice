@@ -62,6 +62,7 @@ public class PersonServlet extends HttpServlet {
 		String personIdStr = req.getParameter("id");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(personIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
@@ -69,6 +70,8 @@ public class PersonServlet extends HttpServlet {
 		}
 
 
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======

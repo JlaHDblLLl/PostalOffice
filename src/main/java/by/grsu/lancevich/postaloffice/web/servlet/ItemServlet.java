@@ -5,10 +5,13 @@ import java.sql.Date;
 import java.sql.Timestamp;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
@@ -34,12 +37,17 @@ public class ItemServlet extends HttpServlet{
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private static final IDao<Integer, Person> userdataDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
 
 	private DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
+=======
+	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
+
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
 
@@ -88,12 +96,15 @@ public class ItemServlet extends HttpServlet{
 		String itemIdStr = req.getParameter("id");
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(itemIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
 
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
@@ -130,7 +141,11 @@ public class ItemServlet extends HttpServlet{
 		item.setHeight(Double.parseDouble(req.getParameter("height")));
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		item.setExpiration_date(new Date(DATE_FORMAT.parse(req.getParameter("expiration_date")).getTime()));
+=======
+		item.setExpiration_date(Timestamp.valueOf(req.getParameter("expiration_date")));
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 		item.setExpiration_date(Timestamp.valueOf(req.getParameter("expiration_date")));
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
