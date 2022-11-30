@@ -3,10 +3,13 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
+<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,22 +23,23 @@ import com.google.common.base.Strings;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
 import by.grsu.lancevich.postaloffice.db.dao.impl.ItemDaoImpl;
 import by.grsu.lancevich.postaloffice.db.dao.impl.ParcelDaoImpl;
-import by.grsu.lancevich.postaloffice.db.dao.impl.PersonDaoImpl;
 import by.grsu.lancevich.postaloffice.db.model.Item;
 import by.grsu.lancevich.postaloffice.db.model.Parcel;
-import by.grsu.lancevich.postaloffice.db.model.Person;
-import by.grsu.lancevich.postaloffice.web.ValidationUtils;
 import by.grsu.lancevich.postaloffice.web.dto.ItemDto;
-import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 
 public class ItemServlet extends HttpServlet{
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
+<<<<<<< HEAD
 	private static final IDao<Integer, Person> userdataDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
 
 	private DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
+=======
+	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
+
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doGet");
@@ -74,12 +78,15 @@ public class ItemServlet extends HttpServlet{
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String itemIdStr = req.getParameter("id");
+<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(itemIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
 
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		ItemDto dto = new ItemDto();
 		if (!Strings.isNullOrEmpty(itemIdStr)) {
 			Integer parcelId = Integer.parseInt(itemIdStr);
@@ -94,19 +101,7 @@ public class ItemServlet extends HttpServlet{
 			dto.setExpiration_date(entity.getExpiration_date());
 		}
 		req.setAttribute("dto", dto);
-		req.setAttribute("allParcels", getAllParcelsDtos());
 		req.getRequestDispatcher("item-edit.jsp").forward(req, res);
-	}
-	private List<ParcelDto> getAllParcelsDtos() {
-		return parcelDao.getAll().stream().map((entity) -> {
-			ParcelDto dto = new ParcelDto();
-			dto.setId(entity.getId());
-			Person receiver = userdataDao.getById(entity.getReceiver_id());
-			Person sender = userdataDao.getById(entity.getSender_id());
-			dto.setReceiver_name(receiver.getName() +" "+ receiver.getSurname());
-			dto.setSender_name(sender.getName() +" "+ sender.getSurname());
-			return dto;
-		}).collect(Collectors.toList());
 	}
 
 	@Override
@@ -122,7 +117,11 @@ public class ItemServlet extends HttpServlet{
 		item.setWidth(Double.parseDouble(req.getParameter("width")));
 		item.setWeight(Double.parseDouble(req.getParameter("weight")));
 		item.setHeight(Double.parseDouble(req.getParameter("height")));
+<<<<<<< HEAD
 		item.setExpiration_date(new Date(DATE_FORMAT.parse(req.getParameter("expiration_date")).getTime()));
+=======
+		item.setExpiration_date(Timestamp.valueOf(req.getParameter("expiration_date")));
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 
 
 		item.setParcel_id(parcelIdStr == null ? null : Integer.parseInt(parcelIdStr));

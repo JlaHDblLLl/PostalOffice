@@ -25,8 +25,13 @@
 		          <label for="address_to">Address to</label>
 		   	</div>
 		    <div class="col s2">
+<<<<<<< HEAD
 		    <br>
 		    <a class="waves-effect btn" href="/parcels?view=edit">Calculate</a>
+=======
+		    <a>⠀</a>
+		    <a class="waves-effect btn">Calculate</a>
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		    </div>
 		</div>
 	</form>
