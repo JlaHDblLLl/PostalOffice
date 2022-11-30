@@ -26,7 +26,7 @@
 	</ul>
 	
 	<div class="nav-wrapper container">
-		<a id="logo-container" href="index.jsp" class="brand-logo center">PostalOficeGrodno</a>
+		<a id="logo-container" href="index.jsp" class="brand-logo center">PostalOfficeGrodno</a>
 		<a href="#" data-target="mobile-demo" class="sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 		<ul class="left hide-on-med-and-down">
