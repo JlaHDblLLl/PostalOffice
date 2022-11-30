@@ -18,7 +18,6 @@ import by.grsu.lancevich.postaloffice.db.dao.impl.AddressDaoImpl;
 import by.grsu.lancevich.postaloffice.db.dao.impl.PersonDaoImpl;
 import by.grsu.lancevich.postaloffice.db.model.Address;
 import by.grsu.lancevich.postaloffice.db.model.Person;
-import by.grsu.lancevich.postaloffice.web.ValidationUtils;
 import by.grsu.lancevich.postaloffice.web.dto.UserdataDto;
 
 public class PersonServlet extends HttpServlet {
@@ -61,13 +60,6 @@ public class PersonServlet extends HttpServlet {
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String personIdStr = req.getParameter("id");
-		
-		if (!ValidationUtils.isInteger(personIdStr)) {
-			res.sendError(400); // send HTTP status 400 and close response
-			return;
-		}
-		
-		
 		UserdataDto dto = new UserdataDto();
 		if (!Strings.isNullOrEmpty(personIdStr)) {
 			Integer personId = Integer.parseInt(personIdStr);
@@ -91,8 +83,11 @@ public class PersonServlet extends HttpServlet {
 		return addressDao.getAll().stream().map((entity) -> {
 			Address dto = new Address();
 			dto.setId(entity.getId());
-			dto.setStreet(entity.getStreet());
-			dto.setHouse(entity.getHouse());
+			dto.setCountry(entity.getCountry());
+			dto.setTown(entity.getCountry());
+			dto.setStreet(entity.getCountry());
+			dto.setHouse(entity.getCountry());
+			dto.setFlat(entity.getCountry());
 			return dto;
 		}).collect(Collectors.toList());
 	}

@@ -35,7 +35,7 @@
 		   	</div>
 		    <div class="col s2">
 		    <a>⠀</a>
-		    <a class="waves-effect btn" href="/parcels?view=edit">Calculate</a>
+		    <a class="waves-effect btn">Calculate</a>
 		    </div>
 		</div>
 	</form>

@@ -37,7 +37,8 @@
 		</ul>
 		<ul class="right hide-on-med-and-down">
 			<li><a class="dropdown-trigger" href="#!" data-target="about_dropdown">About<i class="material-icons right">arrow_drop_down</i></a></li>
-			<li><a onclick="sendHTTPDelete('/login')">Logout</a></li>
+			<li><a href="#">Login</a></li>
+			<li><a href="#"><i class="material-icons right">perm_identity</i>Sign in</a></li>
 		</ul>
 	</div>
 	
@@ -48,7 +49,8 @@
 		<li><a href="addresses">Addresses</a></li>
 		<li><a class="dropdown-trigger" href="#!" data-target="mobile_about_dropdown">About<i class="material-icons right">arrow_drop_down</i></a></li>
 		<li><div class="divider"></div></li>
-		<li class="active"><a onclick="sendHTTPDelete('/login')">Logout</a></li>
+		<li><a href="#">Login</a></li>
+		<li><a href="#"><i class="material-icons right">perm_identity</i>Sign in</a></li>
 	</ul>
 </nav>
 <div class="section no-pad-bot" id="index-banner">
