@@ -1,6 +1,7 @@
 package by.grsu.lancevich.postaloffice.db.dao.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,14 +27,14 @@ public class ParcelDaoImpl extends AbstractDao implements IDao<Integer, Parcel>{
 
 			pstmt.setInt(1, entity.getSender_id());
 			pstmt.setInt(2, entity.getReceiver_id());
-			pstmt.setTimestamp(3, entity.getDate_send());
-			pstmt.setTimestamp(4, entity.getDate_accept());
+			pstmt.setDate(3, (Date)entity.getDate_send());
+			pstmt.setDate(4, (Date)entity.getDate_accept());
 			pstmt.setBoolean(5, entity.getFragile());
 			pstmt.setDouble(6, entity.getLength());
 			pstmt.setDouble(7, entity.getWidth());
 			pstmt.setDouble(8, entity.getHeight());
 			pstmt.setDouble(9, entity.getWeight());
-			pstmt.setTimestamp(10, entity.getExpiration_date());
+			pstmt.setDate(10, (Date)entity.getExpiration_date());
 			pstmt.setInt(11, entity.getAddress_from_id());
 			pstmt.setInt(12, entity.getAddress_to_id());
 			pstmt.setTimestamp(13, entity.getCreated());
@@ -52,14 +53,14 @@ public class ParcelDaoImpl extends AbstractDao implements IDao<Integer, Parcel>{
 			PreparedStatement pstmt = c.prepareStatement("update parcel set sender_id=?, receiver_id=?, date_send=?, date_accept=?, fragile=?, length=?, width=?, height=?, weight=?, expiration_date=?, address_from_id=?, address_to_id=?, updated=? where id=?");
 			pstmt.setInt(1, entity.getSender_id());
 			pstmt.setInt(2, entity.getReceiver_id());
-			pstmt.setTimestamp(3, entity.getDate_send());
-			pstmt.setTimestamp(4, entity.getDate_accept());
+			pstmt.setDate(3, (Date) entity.getDate_send());
+			pstmt.setDate(4, (Date) entity.getDate_accept());
 			pstmt.setBoolean(5, entity.getFragile());
 			pstmt.setDouble(6, entity.getLength());
 			pstmt.setDouble(7, entity.getWidth());
 			pstmt.setDouble(8, entity.getHeight());
 			pstmt.setDouble(9, entity.getWeight());
-			pstmt.setTimestamp(10, entity.getExpiration_date());
+			pstmt.setDate(10, (Date) entity.getExpiration_date());
 			pstmt.setInt(11, entity.getAddress_from_id());
 			pstmt.setInt(12, entity.getAddress_to_id());
 			pstmt.setTimestamp(13, entity.getUpdated());
