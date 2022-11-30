@@ -3,10 +3,13 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 import java.io.IOException;
 import java.sql.Timestamp;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 import java.util.Date;
@@ -31,8 +34,11 @@ import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 
 public class ParcelServlet extends HttpServlet{
 <<<<<<< HEAD
+<<<<<<< HEAD
 	private DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
@@ -88,12 +94,15 @@ public class ParcelServlet extends HttpServlet{
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String parcelIdStr = req.getParameter("id");
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(parcelIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
 
+=======
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		ParcelDto dto = new ParcelDto();
@@ -132,8 +141,13 @@ public class ParcelServlet extends HttpServlet{
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		parcel.setDate_send(new Date(DATE_FORMAT.parse(req.getParameter("date_send")).getTime()));
 		parcel.setDate_accept(new Date(DATE_FORMAT.parse(req.getParameter("date_accept")).getTime()));
+=======
+		parcel.setDate_send(Timestamp.valueOf(req.getParameter("date_send")));
+		parcel.setDate_accept(Timestamp.valueOf(req.getParameter("date_accept")));
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 		parcel.setDate_send(Timestamp.valueOf(req.getParameter("date_send")));
 		parcel.setDate_accept(Timestamp.valueOf(req.getParameter("date_accept")));

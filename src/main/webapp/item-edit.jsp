@@ -38,6 +38,7 @@
 				</p>
 				<div class="input-field col s4">
 <<<<<<< HEAD
+<<<<<<< HEAD
 					 	<input placeholder="Until what time is it good"
 						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
 						for="expiration_date">Expiration date</label> 
@@ -47,6 +48,10 @@
 =======
 					<input placeholder="Until what time is it good"
 						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
+=======
+					<input placeholder="Until what time is it good"
+						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
+>>>>>>> parent of 5d51eb5 (laba 7,8,9)
 						for="expiration_date">Expiration date</label>
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 				</div>
