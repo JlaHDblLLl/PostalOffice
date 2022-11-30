@@ -2,8 +2,6 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -28,7 +26,7 @@ import by.grsu.lancevich.postaloffice.web.ValidationUtils;
 import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 
 public class ParcelServlet extends HttpServlet{
-	private DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
+	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
@@ -64,14 +62,14 @@ public class ParcelServlet extends HttpServlet{
 			Address address_from = addressDao.getById(entity.getAddress_from_id());
 			Address address_to = addressDao.getById(entity.getAddress_to_id());
 
-			dto.setAddress_from_name(address_from.getCountry() + " " + address_from.getStreet() + " " + address_from.getHouse());
-			dto.setAddress_to_name(address_to.getCountry() + " " + address_to.getStreet() + " " + address_to.getHouse());
+			dto.setAddress_from_name(address_from.toString());
+			dto.setAddress_to_name(address_to.toString());
 
 			Person sender = personDao.getById(entity.getSender_id());
 			Person receiver = personDao.getById(entity.getReceiver_id());
 
-			dto.setSender_name(sender.getName() + " " + sender.getSurname() + " " + sender.getPassport_number() + " " + sender.getPassport_authority());
-			dto.setReceiver_name(receiver.getName() + " " + receiver.getSurname() + " " + receiver.getPassport_number() + " " + receiver.getPassport_authority());
+			dto.setSender_name(sender.toString());
+			dto.setReceiver_name(receiver.toString());
 
 			return dto;
 		}).collect(Collectors.toList());
@@ -82,12 +80,12 @@ public class ParcelServlet extends HttpServlet{
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String parcelIdStr = req.getParameter("id");
-
+		
 		if (!ValidationUtils.isInteger(parcelIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
-
+		
 		ParcelDto dto = new ParcelDto();
 		if (!Strings.isNullOrEmpty(parcelIdStr)) {
 			Integer parcelId = Integer.parseInt(parcelIdStr);
@@ -144,8 +142,8 @@ public class ParcelServlet extends HttpServlet{
 		String receiverIdStr = req.getParameter("receiver_id");
 
 
-		parcel.setDate_send(new Date(DATE_FORMAT.parse(req.getParameter("date_send")).getTime()));
-		parcel.setDate_accept(new Date(DATE_FORMAT.parse(req.getParameter("date_accept")).getTime()));
+		parcel.setDate_send(Timestamp.valueOf(LocalDateTime.parse(req.getParameter("date_send"), TIMESTAMP_FORMAT)));
+		parcel.setDate_accept(Timestamp.valueOf(LocalDateTime.parse(req.getParameter("date_accept"), TIMESTAMP_FORMAT)));
 		parcel.setFragile(Boolean.parseBoolean(req.getParameter("fragile")));
 		parcel.setLength(Double.parseDouble(req.getParameter("length")));
 		parcel.setWidth(Double.parseDouble(req.getParameter("width")));

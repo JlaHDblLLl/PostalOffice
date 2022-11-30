@@ -1,10 +1,7 @@
 package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -31,11 +28,10 @@ import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 public class ItemServlet extends HttpServlet{
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> userdataDao = PersonDaoImpl.INSTANCE;
-	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
 
-	private DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
-
+	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doGet");
@@ -60,10 +56,8 @@ public class ItemServlet extends HttpServlet{
 			dto.setExpiration_date(entity.getExpiration_date());
 
 			Parcel parcel = parcelDao.getById(entity.getParcel_id());
-			Person sender = personDao.getById(parcel.getSender_id());
-			Person receiver = personDao.getById(parcel.getReceiver_id());
 
-			dto.setParcel_name(sender.getName() + " " + receiver.getName() + " " + parcel.getDate_send() + " "+ parcel.getDate_accept());
+			dto.setParcel_name(parcel.toString());
 
 			return dto;
 		}).collect(Collectors.toList());
@@ -74,12 +68,12 @@ public class ItemServlet extends HttpServlet{
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String itemIdStr = req.getParameter("id");
-
+		
 		if (!ValidationUtils.isInteger(itemIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
-
+		
 		ItemDto dto = new ItemDto();
 		if (!Strings.isNullOrEmpty(itemIdStr)) {
 			Integer parcelId = Integer.parseInt(itemIdStr);
@@ -122,7 +116,7 @@ public class ItemServlet extends HttpServlet{
 		item.setWidth(Double.parseDouble(req.getParameter("width")));
 		item.setWeight(Double.parseDouble(req.getParameter("weight")));
 		item.setHeight(Double.parseDouble(req.getParameter("height")));
-		item.setExpiration_date(new Date(DATE_FORMAT.parse(req.getParameter("expiration_date")).getTime()));
+		item.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(req.getParameter("expiration_date"), TIMESTAMP_FORMAT)));
 
 
 		item.setParcel_id(parcelIdStr == null ? null : Integer.parseInt(parcelIdStr));

@@ -51,7 +51,7 @@ public class PersonServlet extends HttpServlet {
 			dto.setUpdated(entity.getUpdated());
 
 			Address address = addressDao.getById(entity.getAddress_id());
-			dto.setAddress_name(address.getCountry() + " " + address.getStreet() + " " + address.getHouse());
+			dto.setAddress_name(address.toString());
 			return dto;
 		}).collect(Collectors.toList());
 
@@ -61,13 +61,13 @@ public class PersonServlet extends HttpServlet {
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String personIdStr = req.getParameter("id");
-
+		
 		if (!ValidationUtils.isInteger(personIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
-
-
+		
+		
 		UserdataDto dto = new UserdataDto();
 		if (!Strings.isNullOrEmpty(personIdStr)) {
 			Integer personId = Integer.parseInt(personIdStr);

@@ -10,12 +10,21 @@
 <div class="section">
  <div class="row">
 	 <div class="section grey lighten-2 no-pad-top no-pad-bot z-depth-1 start-splash-section col s12">
-		<div class = "col s12">
+		<div class = "col s4">
+			<h4>Trace</h4>
+		</div>
+		<div class = "col s8">
 			<h4>Send a parcel</h4>
 		</div>
 	</div>
 	<form>
-		<div class="section grey lighten-2 no-pad-top z-depth-1 start-splash-section col s12">
+		<div class="section grey lighten-2 no-pad-top z-depth-1 start-splash-section col s4">
+			<div class="input-field">
+		    	<input id="track_number" type="text" class="validate">
+		    	<label  for="track_number">Track number</label>
+		    </div>
+		</div>
+		<div class="section grey lighten-2 no-pad-top z-depth-1 start-splash-section col s8">
 			<div class="input-field col s5">
 		          <input id="address_from" type="text" class="validate">
 		          <label for="address_from">Address from</label>
@@ -25,7 +34,7 @@
 		          <label for="address_to">Address to</label>
 		   	</div>
 		    <div class="col s2">
-		    <br>
+		    <a>⠀</a>
 		    <a class="waves-effect btn" href="/parcels?view=edit">Calculate</a>
 		    </div>
 		</div>
