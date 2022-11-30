@@ -61,7 +61,6 @@ public class PersonServlet extends HttpServlet {
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String personIdStr = req.getParameter("id");
 <<<<<<< HEAD
-<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(personIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
@@ -69,8 +68,6 @@ public class PersonServlet extends HttpServlet {
 		}
 
 
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		UserdataDto dto = new UserdataDto();

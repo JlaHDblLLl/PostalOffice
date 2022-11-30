@@ -22,10 +22,7 @@ public class AddressServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doGet");
 <<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		String viewParam = req.getParameter("view");
@@ -56,15 +53,12 @@ public class AddressServlet extends HttpServlet {
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String addressIdStr = req.getParameter("id");
 <<<<<<< HEAD
-<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(addressIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
 
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		Address dto = new Address();
