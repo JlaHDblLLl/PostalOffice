@@ -23,10 +23,7 @@ public class AddressServlet extends HttpServlet {
 		System.out.println("doGet");
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
@@ -60,15 +57,12 @@ public class AddressServlet extends HttpServlet {
 		String addressIdStr = req.getParameter("id");
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(addressIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
 
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
 >>>>>>> parent of 5d51eb5 (laba 7,8,9)
 =======
