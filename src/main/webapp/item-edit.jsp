@@ -12,16 +12,21 @@
 			<div class="center-align"><h4>Edit item #${dto.id}</h4></div>
 		</c:otherwise>
 	</c:choose>
-<form class="col s12" method="post" action="/parcels">
+<form class="col s12" method="post" action="/items">
 	<div class="row">
 		<input type="hidden" name="id" value="${dto.id}" />
 			<div class="center-align">
 				<h5>Parcel data</h5>
 			</div>
 			<div class="row">
-				<div class="input-field col s12">
-					<input name="parcel_id" type="text" value="${dto.parcel_id}"> <label
-						for="parcel_id">Parcel id</label>
+				<div class="col s12">
+				<label for="parcel_id">Parcel</label>
+				<select name="parcel_id" class="browser-default" required>
+						<option value="">--select parcel--</option>
+						<c:forEach items="${allParcels}" var="parcel">
+							<option value="${parcel.id}" <c:if test="${parcel.id eq dto.parcel_id}">selected="selected"</c:if>>${parcel.id}: ${parcel.sender_name} ${parcel.receiver_name}</option>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 			<div class="center-align">
@@ -29,26 +34,20 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input name="weight" type="text" value="${dto.weight}"> <label
+					<input name="weight" type="text" value="${dto.weight}" required> <label
 						for="weight">Weight</label>
 				</div>
 				<p class="center-align col s4">
-					<label> <input type="checkbox" /><span>Fragile</span>
+					<label><input type="checkbox" name="checkbox" ${dto.fragile ? 'fragile' : ''} value="true" /> <span>Fragile</span>
 					</label>
 				</p>
 				<div class="input-field col s4">
-<<<<<<< HEAD
 					 	<input placeholder="Until what time is it good"
 						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
 						for="expiration_date">Expiration date</label> 
 						<!--<input placeholder="Until what time is it good"
 						name="expiration_date" type="date" value="${dto.expiration_date}" required> <label
 						for="expiration_date">Expiration date</label>-->
-=======
-					<input placeholder="Until what time is it good"
-						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
-						for="expiration_date">Expiration date</label>
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 				</div>
 			</div>
 			<div class="row">
@@ -56,15 +55,15 @@
 					<h5>Item size</h5>
 				</div>
 				<div class="input-field col s4">
-					<input name="length" type="text" value="${dto.length}"> <label
+					<input name="length" type="text" value="${dto.length}" required> <label
 						for="length">Length</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="width" type="text" value="${dto.width}"> <label
+					<input name="width" type="text" value="${dto.width}" required> <label
 						for="width">Width</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="height" type="text" value="${dto.height}"> <label
+					<input name="height" type="text" value="${dto.height}" required> <label
 						for="height">Height</label>
 				</div>
 			</div>

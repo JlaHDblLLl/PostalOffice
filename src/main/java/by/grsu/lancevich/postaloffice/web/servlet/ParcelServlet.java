@@ -2,13 +2,10 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-<<<<<<< HEAD
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,14 +24,12 @@ import by.grsu.lancevich.postaloffice.db.dao.impl.PersonDaoImpl;
 import by.grsu.lancevich.postaloffice.db.model.Address;
 import by.grsu.lancevich.postaloffice.db.model.Parcel;
 import by.grsu.lancevich.postaloffice.db.model.Person;
+import by.grsu.lancevich.postaloffice.web.ValidationUtils;
 import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 
 public class ParcelServlet extends HttpServlet{
-<<<<<<< HEAD
 	private DateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd");
 
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
@@ -87,15 +82,12 @@ public class ParcelServlet extends HttpServlet{
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String parcelIdStr = req.getParameter("id");
-<<<<<<< HEAD
 
 		if (!ValidationUtils.isInteger(parcelIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
 
-=======
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		ParcelDto dto = new ParcelDto();
 		if (!Strings.isNullOrEmpty(parcelIdStr)) {
 			Integer parcelId = Integer.parseInt(parcelIdStr);
@@ -117,7 +109,28 @@ public class ParcelServlet extends HttpServlet{
 			dto.setReceiver_id(entity.getReceiver_id());
 		}
 		req.setAttribute("dto", dto);
+		req.setAttribute("allUserdata", getAllUserdataDtos());
+		req.setAttribute("allAddresses", getAllAddressesDtos());
 		req.getRequestDispatcher("parcel-edit.jsp").forward(req, res);
+	}
+	private List<Person> getAllUserdataDtos() {
+		return personDao.getAll().stream().map((entity) -> {
+			Person dto = new Person();
+			dto.setId(entity.getId());
+			dto.setName(entity.getName());
+			dto.setIndetification_number(entity.getIndetification_number());
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
+	private List<Address> getAllAddressesDtos() {
+		return addressDao.getAll().stream().map((entity) -> {
+			Address dto = new Address();
+			dto.setId(entity.getId());
+			dto.setStreet(entity.getStreet());
+			dto.setHouse(entity.getHouse());
+			return dto;
+		}).collect(Collectors.toList());
 	}
 
 	@Override
@@ -131,19 +144,14 @@ public class ParcelServlet extends HttpServlet{
 		String receiverIdStr = req.getParameter("receiver_id");
 
 
-<<<<<<< HEAD
 		parcel.setDate_send(new Date(DATE_FORMAT.parse(req.getParameter("date_send")).getTime()));
 		parcel.setDate_accept(new Date(DATE_FORMAT.parse(req.getParameter("date_accept")).getTime()));
-=======
-		parcel.setDate_send(Timestamp.valueOf(req.getParameter("date_send")));
-		parcel.setDate_accept(Timestamp.valueOf(req.getParameter("date_accept")));
->>>>>>> parent of 5d51eb5 (laba 7,8,9)
 		parcel.setFragile(Boolean.parseBoolean(req.getParameter("fragile")));
 		parcel.setLength(Double.parseDouble(req.getParameter("length")));
 		parcel.setWidth(Double.parseDouble(req.getParameter("width")));
 		parcel.setWeight(Double.parseDouble(req.getParameter("weight")));
 		parcel.setHeight(Double.parseDouble(req.getParameter("height")));
-		parcel.setExpiration_date(Timestamp.valueOf(req.getParameter("expiration_date")));
+		parcel.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(req.getParameter("expiration_date"), TIMESTAMP_FORMAT)));
 
 
 		parcel.setAddress_from_id(address_fromIdStr == null ? null : Integer.parseInt(address_fromIdStr));
