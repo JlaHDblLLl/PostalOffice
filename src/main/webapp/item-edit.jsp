@@ -42,12 +42,12 @@
 					</label>
 				</p>
 				<div class="input-field col s4">
-					<!-- <input placeholder="Until what time is it good"
+					 	<input placeholder="Until what time is it good"
 						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
-						for="expiration_date">Expiration date</label> -->
-						<input placeholder="Until what time is it good"
+						for="expiration_date">Expiration date</label> 
+						<!--<input placeholder="Until what time is it good"
 						name="expiration_date" type="date" value="${dto.expiration_date}" required> <label
-						for="expiration_date">Expiration date</label>
+						for="expiration_date">Expiration date</label>-->
 				</div>
 			</div>
 			<div class="row">

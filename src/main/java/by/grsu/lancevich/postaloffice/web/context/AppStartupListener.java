@@ -46,6 +46,9 @@ public class AppStartupListener implements ServletContextListener {
 	private Timestamp getCurrentTime() {
 		return new Timestamp(new Date().getTime());
 	}
+	private Date getCurrentDate() {
+		return new Date(new Date().getTime());
+	}
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
@@ -95,14 +98,14 @@ public class AppStartupListener implements ServletContextListener {
 		Parcel entity = new Parcel();
 		entity.setSender_id(createPerson(name).getId());
 		entity.setReceiver_id(createPerson(name).getId());
-		entity.setDate_send(getCurrentTime());
-		entity.setDate_accept(getCurrentTime());
+		entity.setDate_send(getCurrentDate());
+		entity.setDate_accept(getCurrentDate());
 		entity.setFragile(true);
 		entity.setLength(1.2);
 		entity.setWidth(2.0);
 		entity.setHeight(3.0);
 		entity.setWeight(12.2);
-		entity.setExpiration_date(getCurrentTime());
+		entity.setExpiration_date(getCurrentDate());
 		entity.setAddress_from_id(createAddress(name).getId());
 		entity.setAddress_to_id(createAddress(name).getId());
 		entity.setCreated(getCurrentTime());

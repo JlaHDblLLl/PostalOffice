@@ -48,6 +48,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<t:paging />
 	<div class="row">
 		<div class="col s12">
 			<div class="center-align">

@@ -1,5 +1,6 @@
 package by.grsu.lancevich.postaloffice.web.dto;
 
+import java.util.Date;
 import java.sql.Timestamp;
 
 public class ParcelDto {
@@ -8,14 +9,14 @@ public class ParcelDto {
 	private String receiver_name;
 	private Integer sender_id;
 	private String sender_name;
-	private Timestamp date_send;
-	private Timestamp date_accept;
+	private Date date_send;
+	private Date date_accept;
 	private Boolean fragile;
 	private Double length;
 	private Double width;
 	private Double height;
 	private Double weight;
-	private Timestamp expiration_date;
+	private Date expiration_date;
 	private Integer address_from_id;
 	private String address_from_name;
 	private Integer address_to_id;
@@ -41,16 +42,16 @@ public class ParcelDto {
 	public void setSender_id(Integer sender_id) {
 		this.sender_id = sender_id;
 	}
-	public Timestamp getDate_send() {
+	public Date getDate_send() {
 		return date_send;
 	}
-	public void setDate_send(Timestamp date_send) {
+	public void setDate_send(Date date_send) {
 		this.date_send = date_send;
 	}
-	public Timestamp getDate_accept() {
+	public Date getDate_accept() {
 		return date_accept;
 	}
-	public void setDate_accept(Timestamp date_accept) {
+	public void setDate_accept(Date date_accept) {
 		this.date_accept = date_accept;
 	}
 	public Boolean getFragile() {
@@ -83,10 +84,10 @@ public class ParcelDto {
 	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
-	public Timestamp getExpiration_date() {
+	public Date getExpiration_date() {
 		return expiration_date;
 	}
-	public void setExpiration_date(Timestamp expiration_date) {
+	public void setExpiration_date(Date expiration_date) {
 		this.expiration_date = expiration_date;
 	}
 	public Integer getAddress_from_id() {
