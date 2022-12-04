@@ -1,6 +1,7 @@
 package by.grsu.lancevich.postaloffice.web;
 
-public class ValidationUtils {
+public abstract class ValidationUtils {
+
 	private ValidationUtils() {
 	}
 

@@ -18,39 +18,34 @@
 			<div class="center-align"><h5>Personal data</h5></div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input name="name" type="text" value="${dto.name}" required> <label
+					<input name="name" type="text" value="${dto.name}"> <label
 						for="name">Name</label>
 				</div>
 				<div class="input-field col s3">
-					<input name="surname" type="text" value="${dto.surname}" required> <label
+					<input name="surname" type="text" value="${dto.surname}"> <label
 						for="surname">Surname</label>
 				</div>
 				<div class="input-field col s3">
-					<input name="patronymic" type="text" value="${dto.patronymic}" required> <label
+					<input name="patronymic" type="text" value="${dto.patronymic}"> <label
 						for="patronymic">Patronymic</label>
 				</div>
-				<div class="col s3">
-					<label for="address_id">Address</label>
-					<select name="address_id" class="browser-default" required>
-						<option value="">--select address of person--</option>
-						<c:forEach items="${allAddresses}" var="address">
-							<option value="${address.id}" <c:if test="${address.id eq dto.address_id}">selected="selected"</c:if>>${address.id}: ${address.street} ${address.house}</option>
-						</c:forEach>
-					</select>
+				<div class="input-field col s3">
+					<input name="address_id" type="text" value="${dto.address_id}">
+					<label for="address_id">Address id</label>
 				</div>
 			</div>
 			<div class="center-align"><h5>Passport details</h5></div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input value="KH" name="passport_number" type="text" value="${dto.passport_number}" required> <label
+					<input value="KH" name="passport_number" type="text" value="${dto.passport_number}"> <label
 						for="passport_number">Passport number</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="indetification_number" type="text" value="${dto.indetification_number}" required> <label
+					<input name="indetification_number" type="text" value="${dto.indetification_number}"> <label
 						for="indetification_number">Indetification number</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="passport_authority" type="text" value="${dto.passport_authority}" required> <label
+					<input name="passport_authority" type="text" value="${dto.passport_authority}"> <label
 						for="passport_authority">Passport authority</label>
 				</div>
 			</div>
