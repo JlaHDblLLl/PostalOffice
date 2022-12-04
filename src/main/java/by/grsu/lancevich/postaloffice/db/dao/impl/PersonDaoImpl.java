@@ -9,7 +9,10 @@ import java.util.List;
 
 import by.grsu.lancevich.postaloffice.db.dao.AbstractDao;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
+import by.grsu.lancevich.postaloffice.db.model.Item;
 import by.grsu.lancevich.postaloffice.db.model.Person;
+import by.grsu.lancevich.postaloffice.web.dto.SortDto;
+import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 
 public class PersonDaoImpl extends AbstractDao implements IDao<Integer, Person>{
 	public static final PersonDaoImpl INSTANCE = new PersonDaoImpl();
@@ -119,5 +122,43 @@ public class PersonDaoImpl extends AbstractDao implements IDao<Integer, Person>{
 		entity.setCreated(rs.getTimestamp("created"));
 		entity.setUpdated(rs.getTimestamp("updated"));
 		return entity;
+	}
+
+	@Override
+	public List<Person> find(TableStateDto tableStateDto) {
+		List<Person> entitiesList = new ArrayList<>();
+		try (Connection c = createConnection()) {
+			StringBuilder sql = new StringBuilder("select * from person");
+
+			final SortDto sortDto = tableStateDto.getSort();
+			if (sortDto != null) {
+				sql.append(String.format(" order by %s %s", sortDto.getColumn(), resolveSortOrder(sortDto)));
+			}
+
+			sql.append(" limit " + tableStateDto.getItemsPerPage());
+			sql.append(" offset " + resolveOffset(tableStateDto));
+
+			System.out.println("searching Person using SQL: " + sql);
+			ResultSet rs = c.createStatement().executeQuery(sql.toString());
+			while (rs.next()) {
+				Person entity = rowToEntity(rs);
+				entitiesList.add(entity);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't select person entities", e);
+		}
+		return entitiesList;
+	}
+
+	@Override
+	public int count() {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("select count(*) as c from person");
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt("c");
+		} catch (SQLException e) {
+			throw new RuntimeException("can't get person count", e);
+		}
 	}
 }

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <c:set var="pageTitle" value="List of parcels" scope="application" />
 
 <t:wrapper>
@@ -11,19 +12,19 @@
 	<table class="highlight">
 		<thead>
 			<tr>
-				<th>Id</th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="id">Id</mytaglib:sort-link></th>
 				<th>Receiver</th>
 				<th>Sender</th>
-				<th>Date send</th>
-				<th>Date accept</th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="date_send">Date send</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="date_accept">Date accept</mytaglib:sort-link></th>
 				<th>Fragile</th>
 				<th>Sizes</th>
-				<th>Weight</th>
-				<th>Expiration date</th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="weight">Weight</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="expiration_date">Expiration date</mytaglib:sort-link></th>
 				<th>Address from</th>
 				<th>Address to</th>
-				<th>Created</th>
-				<th>Updated</th>	
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="created">Created</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="updated">Updated</mytaglib:sort-link></th>	
 			</tr>
 		</thead>
 		<tbody>

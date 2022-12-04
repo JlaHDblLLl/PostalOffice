@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <c:set var="pageTitle" value="List of items" scope="application" />
 
 <t:wrapper>
@@ -11,12 +12,12 @@
 	<table class="highlight">
 		<thead>
 			<tr>
-				<th>Id</th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="id">Id</mytaglib:sort-link></th>
 				<th>In parcel</th>
 				<th>Fragile</th>
 				<th>Sizes</th>
-				<th>Weight</th>
-				<th>Expiration date</th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="weight">Weight</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="expiration_date">Expiration date</mytaglib:sort-link></th>
 			</tr>
 		</thead>
 		<tbody>

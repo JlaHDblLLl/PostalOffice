@@ -24,8 +24,9 @@ import by.grsu.lancevich.postaloffice.db.model.Person;
 import by.grsu.lancevich.postaloffice.web.ValidationUtils;
 import by.grsu.lancevich.postaloffice.web.dto.ItemDto;
 import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
+import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 
-public class ItemServlet extends HttpServlet{
+public class ItemServlet extends AbstractListServlet{
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
 
@@ -42,9 +43,11 @@ public class ItemServlet extends HttpServlet{
 		}
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Item> parcels = itemDao.getAll();
+		int totalItems = itemDao.count();
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalItems); 
+		List<Item> items = itemDao.find(tableStateDto); 
 
-		List<ItemDto> dtos = parcels.stream().map((entity) -> {
+		List<ItemDto> dtos = items.stream().map((entity) -> {
 			ItemDto dto = new ItemDto();
 			dto.setId(entity.getId());
 			dto.setFragile(entity.getFragile());

@@ -2,6 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="t" tagdir="/WEB-INF/tags"%>
+<%@ taglib prefix="mytaglib" uri="my-custom-tags-uri"%>
 <c:set var="pageTitle" value="List of users" scope="application" />
 
 <t:wrapper>
@@ -11,16 +12,16 @@
 	<table class="highlight">
 		<thead>
 			<tr>
-				<th>Id</th>
-				<th>Name</th>
-				<th>Surname</th>
-				<th>Patronymic</th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="id">Id</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="name">Name</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="surname">Surname</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="patronymic">Patronymic</mytaglib:sort-link></th>
 				<th>Address</th>
-				<th>Passport_number</th>
-				<th>Indetification_number</th>
-				<th>Passport_authority</th>
-				<th>Created</th>
-				<th>Updated</th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="passport_number">Passport_number</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="indetification_number">Indetification_number</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="passport_authority">Passport_authority</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="created">Created</mytaglib:sort-link></th>
+				<th><mytaglib:sort-link pageUrl="${pageUrl}" column="updated">Updated</mytaglib:sort-link></th>
 			</tr>
 		</thead>
 		<tbody>

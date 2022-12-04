@@ -19,9 +19,10 @@ import by.grsu.lancevich.postaloffice.db.dao.impl.PersonDaoImpl;
 import by.grsu.lancevich.postaloffice.db.model.Address;
 import by.grsu.lancevich.postaloffice.db.model.Person;
 import by.grsu.lancevich.postaloffice.web.ValidationUtils;
+import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 import by.grsu.lancevich.postaloffice.web.dto.UserdataDto;
 
-public class PersonServlet extends HttpServlet {
+public class PersonServlet extends AbstractListServlet {
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
 
@@ -36,7 +37,9 @@ public class PersonServlet extends HttpServlet {
 		}
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		List<Person> persons = personDao.getAll();
+		int totalPersons = personDao.count();
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalPersons); 
+		List<Person> persons = personDao.find(tableStateDto); 
 
 		List<UserdataDto> dtos = persons.stream().map((entity) -> {
 			UserdataDto dto = new UserdataDto();

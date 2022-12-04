@@ -10,6 +10,8 @@ import java.util.List;
 import by.grsu.lancevich.postaloffice.db.dao.AbstractDao;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
 import by.grsu.lancevich.postaloffice.db.model.Address;
+import by.grsu.lancevich.postaloffice.web.dto.SortDto;
+import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 
 
 public class AddressDaoImpl extends AbstractDao implements IDao<Integer, Address> {
@@ -109,5 +111,43 @@ public class AddressDaoImpl extends AbstractDao implements IDao<Integer, Address
 			entity.setHouse(rs.getString("house"));
 			entity.setFlat(rs.getString("flat"));
 			return entity;
+		}
+
+		@Override
+		public List<Address> find(TableStateDto tableStateDto) {
+			List<Address> entitiesList = new ArrayList<>();
+			try (Connection c = createConnection()) {
+				StringBuilder sql = new StringBuilder("select * from address");
+
+				final SortDto sortDto = tableStateDto.getSort();
+				if (sortDto != null) {
+					sql.append(String.format(" order by %s %s", sortDto.getColumn(), resolveSortOrder(sortDto)));
+				}
+
+				sql.append(" limit " + tableStateDto.getItemsPerPage());
+				sql.append(" offset " + resolveOffset(tableStateDto));
+
+				System.out.println("searching Address using SQL: " + sql);
+				ResultSet rs = c.createStatement().executeQuery(sql.toString());
+				while (rs.next()) {
+					Address entity = rowToEntity(rs);
+					entitiesList.add(entity);
+				}
+			} catch (SQLException e) {
+				throw new RuntimeException("can't select Address entities", e);
+			}
+			return entitiesList;
+		}
+
+		@Override
+		public int count() {
+			try (Connection c = createConnection()) {
+				PreparedStatement pstmt = c.prepareStatement("select count(*) as c from address");
+				ResultSet rs = pstmt.executeQuery();
+				rs.next();
+				return rs.getInt("c");
+			} catch (SQLException e) {
+				throw new RuntimeException("can't get address count", e);
+			}
 		}
 }

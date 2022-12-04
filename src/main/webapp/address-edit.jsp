@@ -32,7 +32,7 @@
 						<input type="text" name="house" value="${dto.house}"> <label for="house">House</label>
 					</div>
 					<div class="input-field col s2">
-						<input type="text" name="flat" value="${dto.flat}"> <label for="flat">Flat</label>
+						<input type="number" name="flat" value="${dto.flat}"> <label for="flat">Flat</label>
 					</div>
 				</div>
 		</div>

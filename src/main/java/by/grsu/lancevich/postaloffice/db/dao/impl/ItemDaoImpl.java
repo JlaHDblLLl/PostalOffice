@@ -10,7 +10,10 @@ import java.util.List;
 
 import by.grsu.lancevich.postaloffice.db.dao.AbstractDao;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
+import by.grsu.lancevich.postaloffice.db.model.Address;
 import by.grsu.lancevich.postaloffice.db.model.Item;
+import by.grsu.lancevich.postaloffice.web.dto.SortDto;
+import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 public class ItemDaoImpl  extends AbstractDao implements IDao<Integer, Item>{
 	public static final ItemDaoImpl INSTANCE = new ItemDaoImpl();
 
@@ -117,5 +120,43 @@ public class ItemDaoImpl  extends AbstractDao implements IDao<Integer, Item>{
 		entity.setWeight(rs.getDouble("weight"));
 		entity.setExpiration_date(rs.getTimestamp("expiration_date"));
 		return entity;
+	}
+
+	@Override
+	public List<Item> find(TableStateDto tableStateDto) {
+		List<Item> entitiesList = new ArrayList<>();
+		try (Connection c = createConnection()) {
+			StringBuilder sql = new StringBuilder("select * from item");
+
+			final SortDto sortDto = tableStateDto.getSort();
+			if (sortDto != null) {
+				sql.append(String.format(" order by %s %s", sortDto.getColumn(), resolveSortOrder(sortDto)));
+			}
+
+			sql.append(" limit " + tableStateDto.getItemsPerPage());
+			sql.append(" offset " + resolveOffset(tableStateDto));
+
+			System.out.println("searching Item using SQL: " + sql);
+			ResultSet rs = c.createStatement().executeQuery(sql.toString());
+			while (rs.next()) {
+				Item entity = rowToEntity(rs);
+				entitiesList.add(entity);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException("can't select item entities", e);
+		}
+		return entitiesList;
+	}
+
+	@Override
+	public int count() {
+		try (Connection c = createConnection()) {
+			PreparedStatement pstmt = c.prepareStatement("select count(*) as c from item");
+			ResultSet rs = pstmt.executeQuery();
+			rs.next();
+			return rs.getInt("c");
+		} catch (SQLException e) {
+			throw new RuntimeException("can't get item count", e);
+		}
 	}
 }
