@@ -1,5 +1,5 @@
 package by.grsu.lancevich.postaloffice.db.model;
-import java.util.Date;
+
 import java.sql.Timestamp;
 
 
@@ -11,7 +11,7 @@ public class Item {
 	private Double width;
 	private Double height;
 	private Boolean fragile;
-	private Date expiration_date;
+	private Timestamp expiration_date;
 	public Integer getId() {
 		return id;
 	}
@@ -54,10 +54,10 @@ public class Item {
 	public void setFragile(Boolean fragile) {
 		this.fragile = fragile;
 	}
-	public Date getExpiration_date() {
+	public Timestamp getExpiration_date() {
 		return expiration_date;
 	}
-	public void setExpiration_date(Date expiration_date) {
+	public void setExpiration_date(Timestamp expiration_date) {
 		this.expiration_date = expiration_date;
 	}
 	@Override

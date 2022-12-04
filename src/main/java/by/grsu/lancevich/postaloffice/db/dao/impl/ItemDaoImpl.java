@@ -1,7 +1,6 @@
 package by.grsu.lancevich.postaloffice.db.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,7 +30,7 @@ public class ItemDaoImpl  extends AbstractDao implements IDao<Integer, Item>{
 			pstmt.setDouble(4, entity.getWidth());
 			pstmt.setDouble(5, entity.getHeight());
 			pstmt.setBoolean(6, entity.getFragile());
-			pstmt.setDate(7, (Date)entity.getExpiration_date());
+			pstmt.setTimestamp(7, entity.getExpiration_date());
 			pstmt.executeUpdate();
 			entity.setId(getGeneratedId(c, "item"));
 		} catch (SQLException e) {
@@ -51,7 +50,7 @@ public class ItemDaoImpl  extends AbstractDao implements IDao<Integer, Item>{
 			pstmt.setDouble(4, entity.getWidth());
 			pstmt.setDouble(5, entity.getHeight());
 			pstmt.setBoolean(6, entity.getFragile());
-			pstmt.setDate(7, (Date)entity.getExpiration_date());
+			pstmt.setTimestamp(7, entity.getExpiration_date());
 			pstmt.setInt(8, entity.getId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

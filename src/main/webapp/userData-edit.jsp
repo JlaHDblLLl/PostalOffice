@@ -30,14 +30,19 @@
 						for="patronymic">Patronymic</label>
 				</div>
 				<div class="input-field col s3">
-					<input name="address_id" type="text" value="${dto.address_id}">
 					<label for="address_id">Address id</label>
+					<select name="address_id" class="browser-default" required>
+						<option value="">--select address--</option>
+						<c:forEach items="${allAddresses}" var="address">
+							<option value="${address.id}" <c:if test="${address.id eq dto.address_id}">selected="selected"</c:if>>${address.id}: ${address.street} ${address.house}</option>
+						</c:forEach>
+					</select>
 				</div>
 			</div>
 			<div class="center-align"><h5>Passport details</h5></div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input value="KH" name="passport_number" type="text" value="${dto.passport_number}"> <label
+					<input value="KH" name="passport_number" type="number" value="${dto.passport_number}"> <label
 						for="passport_number">Passport number</label>
 				</div>
 				<div class="input-field col s4">

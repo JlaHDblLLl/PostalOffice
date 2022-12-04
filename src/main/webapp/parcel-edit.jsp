@@ -21,7 +21,7 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input name="weight" type="text" value="${dto.weight}"> <label
+					<input name="weight" type="number" value="${dto.weight}"> <label
 						for="weight">Weight</label>
 				</div>
 				<div class="input-field col s4">
@@ -29,27 +29,47 @@
 						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
 						for="expiration_date">Expiration date</label>
 				</div>
-				<p class="center-align col s4">
-					<label> <input value="${dto.fragile}" type="checkbox" /><span>Fragile</span>
+				<div class="center-align col s4">
+					<label><input type="checkbox" name="actual" ${dto.fragile ? 'checked' : ''} value="true" /> <span>Fragile</span>
 					</label>
-				</p>
+				</div>
 			</div>
 			<div class="row">
 			<div class="input-field col s2">
-					<input name="address_from_id" type="text" value="${dto.address_from_id}"> <label
-						for="address_from_id">Address from id</label>
+					<label for="address_from_id">Address from id</label>
+					<select name="address_from_id" class="browser-default" required>
+						<option value="">--select address from--</option>
+						<c:forEach items="${allAddresses}" var="address">
+							<option value="${address.id}" <c:if test="${address.id eq dto.address_from_id}">selected="selected"</c:if>>${address.id}: ${address.street} ${address.house}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="input-field col s2">
-					<input name="address_to_id" type="text" value="${dto.address_to_id}"> <label
-						for="address_to_id">Address to id</label>
+					<label for="address_to_id">Address to id</label>
+					<select name="address_to_id" class="browser-default" required>
+						<option value="">--select address to--</option>
+						<c:forEach items="${allAddresses}" var="address">
+							<option value="${address.id}" <c:if test="${address.id eq dto.address_from_id}">selected="selected"</c:if>>${address.id}: ${address.street} ${address.house}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="input-field col s2">
-					<input name="receiver_id" type="text" value="${dto.receiver_id}"> <label
-						for="receiver_id">Receiver id</label>
+					<label for="receiver_id">Receiver id</label>
+					<select name="receiver_id" class="browser-default" required>
+						<option value="">--select receiver--</option>
+						<c:forEach items="${allPersons}" var="person">
+							<option value="${person.id}" <c:if test="${person.id eq dto.receiver_id}">selected="selected"</c:if>>${person.id}: ${person.name} ${person.surname}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="input-field col s2">
-					<input name="sender_id" type="text" value="${dto.sender_id}"> <label
-						for="date_send">Sender id</label>
+					<label for="date_send">Sender id</label>
+					<select name="sender_id" class="browser-default" required>
+						<option value="">--select sender--</option>
+						<c:forEach items="${allPersons}" var="person">
+							<option value="${person.id}" <c:if test="${person.id eq dto.sender_id}">selected="selected"</c:if>>${person.id}: ${person.name} ${person.surname}</option>
+						</c:forEach>
+					</select>
 				</div>
 				<div class="input-field col s2">
 					<input name="date_send" value="${dto.date_send}" type="text" class="datepicker"> <label
@@ -65,15 +85,15 @@
 					<h5>Size</h5>
 				</div>
 				<div class="input-field col s4">
-					<input name="length"  value="${dto.length}" type="text"> <label
+					<input name="length"  value="${dto.length}" type="number"> <label
 						for="length">Length</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="width" value="${dto.width}" type="text"> <label
+					<input name="width" value="${dto.width}" type="number"> <label
 						for="width">Width</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="height" value="${dto.height}" type="text"> <label
+					<input name="height" value="${dto.height}" type="number"> <label
 						for="height">Height</label>
 				</div>
 			</div>
