@@ -19,7 +19,7 @@
 				<h5>Parcel data</h5>
 			</div>
 			<div class="row">
-				<div class="input-field col s12">
+				<div class=" col s12">
 					<label for="parcel_id">Parcel id</label>
 					<select name="parcel_id" class="browser-default" required>
 						<option value="">--select parcel--</option>

@@ -7,7 +7,7 @@ public abstract class ValidationUtils {
 
 	public static boolean isInteger(String str) {
 		if (str == null) {
-			return false;
+			return true;
 		}
 		try {
 			Integer.parseInt(str);

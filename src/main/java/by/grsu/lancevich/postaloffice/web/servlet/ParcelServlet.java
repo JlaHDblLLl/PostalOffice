@@ -104,7 +104,28 @@ public class ParcelServlet extends HttpServlet{
 			dto.setReceiver_id(entity.getReceiver_id());
 		}
 		req.setAttribute("dto", dto);
+		req.setAttribute("allAddresses", getAllAddressesDtos());
+		req.setAttribute("allPersons", getAllPersonsDtos());
 		req.getRequestDispatcher("parcel-edit.jsp").forward(req, res);
+	}
+	
+	private List<Address> getAllAddressesDtos() {
+		return addressDao.getAll().stream().map((entity) -> {
+			Address dto = new Address();
+			dto.setId(entity.getId());
+			dto.setStreet(entity.getStreet());
+			dto.setHouse(entity.getHouse());
+			return dto;
+		}).collect(Collectors.toList());
+	}
+	private List<Person> getAllPersonsDtos() {
+		return personDao.getAll().stream().map((entity) -> {
+			Person dto = new Person();
+			dto.setId(entity.getId());
+			dto.setName(entity.getName());
+			dto.setSurname(entity.getSurname());
+			return dto;
+		}).collect(Collectors.toList());
 	}
 
 	@Override

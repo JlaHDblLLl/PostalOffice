@@ -26,7 +26,7 @@
 		   	</div>
 		    <div class="col s2">
 		    <br>
-		    <a class="waves-effect btn" href="/parcels?view">Calculate</a>
+		    <a class="waves-effect btn" href="/parcels?view=edit">Calculate</a>
 		    </div>
 		</div>
 	</form>

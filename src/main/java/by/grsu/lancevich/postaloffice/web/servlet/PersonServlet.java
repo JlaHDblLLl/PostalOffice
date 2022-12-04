@@ -90,11 +90,8 @@ public class PersonServlet extends HttpServlet {
 		return addressDao.getAll().stream().map((entity) -> {
 			Address dto = new Address();
 			dto.setId(entity.getId());
-			dto.setCountry(entity.getCountry());
-			dto.setTown(entity.getCountry());
-			dto.setStreet(entity.getCountry());
-			dto.setHouse(entity.getCountry());
-			dto.setFlat(entity.getCountry());
+			dto.setStreet(entity.getStreet());
+			dto.setHouse(entity.getHouse());
 			return dto;
 		}).collect(Collectors.toList());
 	}

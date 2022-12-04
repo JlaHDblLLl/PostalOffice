@@ -29,7 +29,7 @@
 					<input name="patronymic" type="text" value="${dto.patronymic}"> <label
 						for="patronymic">Patronymic</label>
 				</div>
-				<div class="input-field col s3">
+				<div class="col s3">
 					<label for="address_id">Address id</label>
 					<select name="address_id" class="browser-default" required>
 						<option value="">--select address--</option>
@@ -42,7 +42,7 @@
 			<div class="center-align"><h5>Passport details</h5></div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input value="KH" name="passport_number" type="number" value="${dto.passport_number}"> <label
+					<input value="KH" name="passport_number" type="text" value="${dto.passport_number}"> <label
 						for="passport_number">Passport number</label>
 				</div>
 				<div class="input-field col s4">

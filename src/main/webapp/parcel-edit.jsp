@@ -35,7 +35,7 @@
 				</div>
 			</div>
 			<div class="row">
-			<div class="input-field col s2">
+			<div class=" col s2">
 					<label for="address_from_id">Address from id</label>
 					<select name="address_from_id" class="browser-default" required>
 						<option value="">--select address from--</option>
@@ -44,16 +44,16 @@
 						</c:forEach>
 					</select>
 				</div>
-				<div class="input-field col s2">
+				<div class=" col s2">
 					<label for="address_to_id">Address to id</label>
 					<select name="address_to_id" class="browser-default" required>
 						<option value="">--select address to--</option>
 						<c:forEach items="${allAddresses}" var="address">
-							<option value="${address.id}" <c:if test="${address.id eq dto.address_from_id}">selected="selected"</c:if>>${address.id}: ${address.street} ${address.house}</option>
+							<option value="${address.id}" <c:if test="${address.id eq dto.address_to_id}">selected="selected"</c:if>>${address.id}: ${address.street} ${address.house}</option>
 						</c:forEach>
 					</select>
 				</div>
-				<div class="input-field col s2">
+				<div class=" col s2">
 					<label for="receiver_id">Receiver id</label>
 					<select name="receiver_id" class="browser-default" required>
 						<option value="">--select receiver--</option>
@@ -62,7 +62,7 @@
 						</c:forEach>
 					</select>
 				</div>
-				<div class="input-field col s2">
+				<div class=" col s2">
 					<label for="date_send">Sender id</label>
 					<select name="sender_id" class="browser-default" required>
 						<option value="">--select sender--</option>

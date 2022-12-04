@@ -36,8 +36,7 @@
 		</ul>
 		<ul class="right hide-on-med-and-down">
 			<li><a href="addresses">Addresses</a></li>
-			<li><a href="#">Login</a></li>
-			<li><a href="#"><i class="material-icons right">perm_identity</i>Sign in</a></li>
+			<li><a onclick="sendHTTPDelete('/login')">Logout</a></li>
 		</ul>
 	</div>
 	
@@ -47,8 +46,7 @@
 		<li><a href="userdata">User data</a></li>
 		<li><a href="addresses">Addresses</a></li>
 		<li><div class="divider"></div></li>
-		<li><a href="#">Login</a></li>
-		<li><a href="#"><i class="material-icons right">perm_identity</i>Sign in</a></li>
+		<li><a onclick="sendHTTPDelete('/login')">Logout</a></li>
 	</ul>
 </nav>
 <div class="section no-pad-bot" id="index-banner">
