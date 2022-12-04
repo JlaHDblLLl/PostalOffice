@@ -2,6 +2,8 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,14 +17,21 @@ import com.google.common.base.Strings;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
 import by.grsu.lancevich.postaloffice.db.dao.impl.ItemDaoImpl;
 import by.grsu.lancevich.postaloffice.db.dao.impl.ParcelDaoImpl;
+import by.grsu.lancevich.postaloffice.db.dao.impl.PersonDaoImpl;
 import by.grsu.lancevich.postaloffice.db.model.Item;
 import by.grsu.lancevich.postaloffice.db.model.Parcel;
+import by.grsu.lancevich.postaloffice.db.model.Person;
+import by.grsu.lancevich.postaloffice.web.ValidationUtils;
 import by.grsu.lancevich.postaloffice.web.dto.ItemDto;
+import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 
 public class ItemServlet extends HttpServlet{
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
+	private static final IDao<Integer, Person> userdataDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
 
+	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	
 	@Override
 	public void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("doGet");
@@ -59,6 +68,12 @@ public class ItemServlet extends HttpServlet{
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String itemIdStr = req.getParameter("id");
+		
+		if (!ValidationUtils.isInteger(itemIdStr)) {
+			res.sendError(400); // send HTTP status 400 and close response
+			return;
+		}
+		
 		ItemDto dto = new ItemDto();
 		if (!Strings.isNullOrEmpty(itemIdStr)) {
 			Integer parcelId = Integer.parseInt(itemIdStr);
@@ -73,7 +88,19 @@ public class ItemServlet extends HttpServlet{
 			dto.setExpiration_date(entity.getExpiration_date());
 		}
 		req.setAttribute("dto", dto);
+		req.setAttribute("allParcels", getAllParcelsDtos());
 		req.getRequestDispatcher("item-edit.jsp").forward(req, res);
+	}
+	private List<ParcelDto> getAllParcelsDtos() {
+		return parcelDao.getAll().stream().map((entity) -> {
+			ParcelDto dto = new ParcelDto();
+			dto.setId(entity.getId());
+			Person receiver = userdataDao.getById(entity.getReceiver_id());
+			Person sender = userdataDao.getById(entity.getSender_id());
+			dto.setReceiver_name(receiver.getName() +" "+ receiver.getSurname());
+			dto.setSender_name(sender.getName() +" "+ sender.getSurname());
+			return dto;
+		}).collect(Collectors.toList());
 	}
 
 	@Override
@@ -89,7 +116,7 @@ public class ItemServlet extends HttpServlet{
 		item.setWidth(Double.parseDouble(req.getParameter("width")));
 		item.setWeight(Double.parseDouble(req.getParameter("weight")));
 		item.setHeight(Double.parseDouble(req.getParameter("height")));
-		item.setExpiration_date(Timestamp.valueOf(req.getParameter("expiration_date")));
+		item.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(req.getParameter("expiration_date"), TIMESTAMP_FORMAT)));
 
 
 		item.setParcel_id(parcelIdStr == null ? null : Integer.parseInt(parcelIdStr));
