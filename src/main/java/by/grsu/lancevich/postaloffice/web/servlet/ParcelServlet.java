@@ -2,13 +2,11 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -42,8 +40,8 @@ public class ParcelServlet extends AbstractListServlet{
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		int totalParcels = parcelDao.count();
-		final TableStateDto tableStateDto = resolveTableStateDto(req, totalParcels); 
-		List<Parcel> parcels = parcelDao.find(tableStateDto); 
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalParcels);
+		List<Parcel> parcels = parcelDao.find(tableStateDto);
 
 		List<ParcelDto> dtos = parcels.stream().map((entity) -> {
 			ParcelDto dto = new ParcelDto();
@@ -111,7 +109,7 @@ public class ParcelServlet extends AbstractListServlet{
 		req.setAttribute("allPersons", getAllPersonsDtos());
 		req.getRequestDispatcher("parcel-edit.jsp").forward(req, res);
 	}
-	
+
 	private List<Address> getAllAddressesDtos() {
 		return addressDao.getAll().stream().map((entity) -> {
 			Address dto = new Address();

@@ -21,12 +21,12 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input name="weight" type="number" value="${dto.weight}"> <label
+					<input name="weight" type="number" value="${dto.weight}" required> <label
 						for="weight">Weight</label>
 				</div>
 				<div class="input-field col s4">
 					<input placeholder="Until what time is it good"
-						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
+						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker" required> <label
 						for="expiration_date">Expiration date</label>
 				</div>
 				<div class="center-align col s4">
@@ -72,11 +72,11 @@
 					</select>
 				</div>
 				<div class="input-field col s2">
-					<input name="date_send" value="${dto.date_send}" type="text" class="datepicker"> <label
+					<input name="date_send" value="${dto.date_send}" type="text" class="datepicker" required> <label
 						for="date_send">Date send</label>
 				</div>
 				<div class="input-field col s2">
-					<input name="date_accept" value="${dto.date_accept}" type="text" class="datepicker"> <label
+					<input name="date_accept" value="${dto.date_accept}" type="text" class="datepicker" required> <label
 						for="date_accept">Date accept</label>
 				</div>
 			</div>
@@ -85,15 +85,15 @@
 					<h5>Size</h5>
 				</div>
 				<div class="input-field col s4">
-					<input name="length"  value="${dto.length}" type="number"> <label
+					<input name="length"  value="${dto.length}" type="number"  required> <label
 						for="length">Length</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="width" value="${dto.width}" type="number"> <label
+					<input name="width" value="${dto.width}" type="number" required> <label
 						for="width">Width</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="height" value="${dto.height}" type="number"> <label
+					<input name="height" value="${dto.height}" type="number" required> <label
 						for="height">Height</label>
 				</div>
 			</div>

@@ -1,7 +1,6 @@
 package by.grsu.lancevich.postaloffice.db.dao.impl;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,7 +9,6 @@ import java.util.List;
 
 import by.grsu.lancevich.postaloffice.db.dao.AbstractDao;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
-import by.grsu.lancevich.postaloffice.db.model.Item;
 import by.grsu.lancevich.postaloffice.db.model.Parcel;
 import by.grsu.lancevich.postaloffice.web.dto.SortDto;
 import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;

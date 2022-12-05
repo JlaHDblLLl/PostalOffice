@@ -77,7 +77,7 @@ public class AbstractDao {
 		File dbDataFile = new File(String.format("%s/%s", DB_FOLDER, DB_NAME));
 		dbDataFile.delete();
 	}
-	
+
 	protected int resolveOffset(TableStateDto dto) {
 		int offset = dto.getItemsPerPage() * (dto.getPage() - 1);
 		return dto.getTotalCount() < offset ? 0 : offset;

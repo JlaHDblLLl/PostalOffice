@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,10 +30,10 @@ public class AddressServlet extends AbstractListServlet {
 		}
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		
+
 		int totalAddresses = addressDao.count();
-		final TableStateDto tableStateDto = resolveTableStateDto(req, totalAddresses); 
-		List<Address> addresses = addressDao.find(tableStateDto); 
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalAddresses);
+		List<Address> addresses = addressDao.find(tableStateDto);
 
 		List<Address> dtos = addresses.stream().map((entity) -> {
 			Address dto = new Address();
@@ -53,12 +52,12 @@ public class AddressServlet extends AbstractListServlet {
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String addressIdStr = req.getParameter("id");
-		
+
 		if (!ValidationUtils.isInteger(addressIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
-		
+
 		Address dto = new Address();
 		if (!Strings.isNullOrEmpty(addressIdStr)) {
 			Integer addressId = Integer.parseInt(addressIdStr);

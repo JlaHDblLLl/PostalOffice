@@ -18,15 +18,15 @@
 			<div class="center-align"><h5>Personal data</h5></div>
 			<div class="row">
 				<div class="input-field col s3">
-					<input name="name" type="text" value="${dto.name}"> <label
+					<input name="name" type="text" value="${dto.name}" required> <label
 						for="name">Name</label>
 				</div>
 				<div class="input-field col s3">
-					<input name="surname" type="text" value="${dto.surname}"> <label
+					<input name="surname" type="text" value="${dto.surname}" required> <label
 						for="surname">Surname</label>
 				</div>
 				<div class="input-field col s3">
-					<input name="patronymic" type="text" value="${dto.patronymic}"> <label
+					<input name="patronymic" type="text" value="${dto.patronymic}" required> <label
 						for="patronymic">Patronymic</label>
 				</div>
 				<div class="col s3">
@@ -42,15 +42,15 @@
 			<div class="center-align"><h5>Passport details</h5></div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input value="KH" name="passport_number" type="text" value="${dto.passport_number}"> <label
+					<input value="KH" name="passport_number" type="text" value="${dto.passport_number}" required> <label
 						for="passport_number">Passport number</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="indetification_number" type="text" value="${dto.indetification_number}"> <label
+					<input name="indetification_number" type="text" value="${dto.indetification_number}" required> <label
 						for="indetification_number">Indetification number</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="passport_authority" type="text" value="${dto.passport_authority}"> <label
+					<input name="passport_authority" type="text" value="${dto.passport_authority}" required> <label
 						for="passport_authority">Passport authority</label>
 				</div>
 			</div>

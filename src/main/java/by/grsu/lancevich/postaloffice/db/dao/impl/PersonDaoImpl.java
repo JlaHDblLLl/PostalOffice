@@ -9,7 +9,6 @@ import java.util.List;
 
 import by.grsu.lancevich.postaloffice.db.dao.AbstractDao;
 import by.grsu.lancevich.postaloffice.db.dao.IDao;
-import by.grsu.lancevich.postaloffice.db.model.Item;
 import by.grsu.lancevich.postaloffice.db.model.Person;
 import by.grsu.lancevich.postaloffice.web.dto.SortDto;
 import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;

@@ -2,12 +2,13 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,7 +18,6 @@ import by.grsu.lancevich.postaloffice.db.dao.IDao;
 import by.grsu.lancevich.postaloffice.db.dao.impl.ItemDaoImpl;
 import by.grsu.lancevich.postaloffice.db.dao.impl.ParcelDaoImpl;
 import by.grsu.lancevich.postaloffice.db.dao.impl.PersonDaoImpl;
-import by.grsu.lancevich.postaloffice.db.model.Address;
 import by.grsu.lancevich.postaloffice.db.model.Item;
 import by.grsu.lancevich.postaloffice.db.model.Parcel;
 import by.grsu.lancevich.postaloffice.db.model.Person;
@@ -27,9 +27,11 @@ import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 
 public class ItemServlet extends AbstractListServlet{
+	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+	
+	
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
-
 	private static final IDao<Integer, Item> itemDao = ItemDaoImpl.INSTANCE;
 
 	@Override
@@ -44,8 +46,8 @@ public class ItemServlet extends AbstractListServlet{
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		int totalItems = itemDao.count();
-		final TableStateDto tableStateDto = resolveTableStateDto(req, totalItems); 
-		List<Item> items = itemDao.find(tableStateDto); 
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalItems);
+		List<Item> items = itemDao.find(tableStateDto);
 
 		List<ItemDto> dtos = items.stream().map((entity) -> {
 			ItemDto dto = new ItemDto();
@@ -77,7 +79,7 @@ public class ItemServlet extends AbstractListServlet{
 			res.sendError(400); // send HTTP status 400 and close response
 			return;
 		}
-		
+
 		ItemDto dto = new ItemDto();
 		if (!Strings.isNullOrEmpty(itemIdStr)) {
 			Integer parcelId = Integer.parseInt(itemIdStr);
@@ -95,7 +97,7 @@ public class ItemServlet extends AbstractListServlet{
 		req.setAttribute("allParcels", getAllParcelsDtos());
 		req.getRequestDispatcher("item-edit.jsp").forward(req, res);
 	}
-	
+
 	private List<ParcelDto> getAllParcelsDtos() {
 		return parcelDao.getAll().stream().map((entity) -> {
 			ParcelDto dto = new ParcelDto();
@@ -122,7 +124,12 @@ public class ItemServlet extends AbstractListServlet{
 		item.setWeight(Double.parseDouble(req.getParameter("weight")));
 		item.setHeight(Double.parseDouble(req.getParameter("height")));
 
-		item.setExpiration_date(Timestamp.valueOf(req.getParameter("expiration_date")));
+		String[] parameters = req.getParameterValues("expiration_date");
+		String date = parameters[0];
+		String time = parameters[1].substring(0, 5);
+		String timestamp = date+"T"+time;
+		item.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp, TIMESTAMP_FORMAT)));
+		
 
 
 		item.setParcel_id(parcelIdStr == null ? null : Integer.parseInt(parcelIdStr));

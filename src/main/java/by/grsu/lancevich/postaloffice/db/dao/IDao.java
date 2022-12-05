@@ -14,7 +14,7 @@ public interface IDao<ID, TYPE> {
 	TYPE getById(ID id);
 
 	List<TYPE> getAll();
-	
+
 	List<TYPE> find(TableStateDto tableStateDto);
 
 	int count();

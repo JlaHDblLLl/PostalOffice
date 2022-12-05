@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,8 +37,8 @@ public class PersonServlet extends AbstractListServlet {
 	}
 	private void handleListView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		int totalPersons = personDao.count();
-		final TableStateDto tableStateDto = resolveTableStateDto(req, totalPersons); 
-		List<Person> persons = personDao.find(tableStateDto); 
+		final TableStateDto tableStateDto = resolveTableStateDto(req, totalPersons);
+		List<Person> persons = personDao.find(tableStateDto);
 
 		List<UserdataDto> dtos = persons.stream().map((entity) -> {
 			UserdataDto dto = new UserdataDto();
@@ -64,7 +63,7 @@ public class PersonServlet extends AbstractListServlet {
 
 	private void handleEditView(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String personIdStr = req.getParameter("id");
-		
+
 		if (!ValidationUtils.isInteger(personIdStr)) {
 			res.sendError(400); // send HTTP status 400 and close response
 			return;

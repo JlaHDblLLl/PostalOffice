@@ -1,6 +1,5 @@
 package by.grsu.lancevich.postaloffice.web.dto;
 
-import java.util.Date;
 import java.sql.Timestamp;
 
 public class ParcelDto {

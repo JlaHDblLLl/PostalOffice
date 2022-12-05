@@ -12,7 +12,7 @@
 			<div class="center-align"><h4>Edit item #${dto.id}</h4></div>
 		</c:otherwise>
 	</c:choose>
-<form class="col s12" method="post" action="/parcels">
+<form class="col s12" method="post" action="/items">
 	<div class="row">
 		<input type="hidden" name="id" value="${dto.id}" />
 			<div class="center-align">
@@ -34,20 +34,22 @@
 			</div>
 			<div class="row">
 				<div class="input-field col s4">
-					<input name="weight" type="number" value="${dto.weight}"> <label
+					<input name="weight" type="number" value="${dto.weight}" required> <label
 						for="weight">Weight</label>
 				</div>
 				<p class="center-align col s4">
 					<label><input type="checkbox" name="actual" ${dto.fragile ? 'checked' : ''} value="true" /> <span>Fragile</span>
 					</label>
 				</p>
-				<div class="input-field col s4">
+				<div class="input-field col s2">
 					 	<input placeholder="Until what time is it good"
-						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker"> <label
+						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker" required> <label
 						for="expiration_date">Expiration date</label> 
-						<!--<input placeholder="Until what time is it good"
-						name="expiration_date" type="date" value="${dto.expiration_date}" required> <label
-						for="expiration_date">Expiration date</label>-->
+				</div>
+				<div class="input-field col s2">
+					 	<input placeholder="Until what time is it good"
+						name="expiration_date" type="text" value="${dto.expiration_date}" class="timepicker" required> <label
+						for="expiration_date">Expiration time</label> 
 				</div>
 			</div>
 			<div class="row">
@@ -55,15 +57,15 @@
 					<h5>Item size</h5>
 				</div>
 				<div class="input-field col s4">
-					<input name="length" type="number" value="${dto.length}"> <label
+					<input name="length" type="number" value="${dto.length}" required> <label
 						for="length">Length</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="width" type="number" value="${dto.width}"> <label
+					<input name="width" type="number" value="${dto.width}" required> <label
 						for="width">Width</label>
 				</div>
 				<div class="input-field col s4">
-					<input name="height" type="number" value="${dto.height}"> <label
+					<input name="height" type="number" value="${dto.height}" required> <label
 						for="height">Height</label>
 				</div>
 			</div>

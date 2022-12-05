@@ -1,7 +1,6 @@
 package by.grsu.lancevich.postaloffice.db.model;
 
 
-import java.util.Date;
 import java.sql.Timestamp;
 
 public class Parcel {

@@ -12,7 +12,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.datepicker');
-    var instances = M.Datepicker.init(elems, {});
+    var instances = M.Datepicker.init(elems, {format:"yyyy-mm-dd"});
+  });
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.timepicker');
+    var instances = M.Timepicker.init(elems, {twelveHour:false});
   });
  document.addEventListener('DOMContentLoaded', function() {
 		M.FormSelect.init(document.querySelectorAll('select'), {});
