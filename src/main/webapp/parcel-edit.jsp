@@ -24,10 +24,15 @@
 					<input name="weight" type="number" value="${dto.weight}" required> <label
 						for="weight">Weight</label>
 				</div>
-				<div class="input-field col s4">
-					<input placeholder="Until what time is it good"
+				<div class="input-field col s2">
+					 	<input placeholder="Until what time is it good"
 						name="expiration_date" type="text" value="${dto.expiration_date}" class="datepicker" required> <label
-						for="expiration_date">Expiration date</label>
+						for="expiration_date">Expiration date</label> 
+				</div>
+				<div class="input-field col s2">
+					 	<input placeholder="Until what time is it good"
+						name="expiration_date" type="text" value="${dto.expiration_date}" class="timepicker" required> <label
+						for="expiration_date">Expiration time</label> 
 				</div>
 				<div class="center-align col s4">
 					<label><input type="checkbox" name="actual" ${dto.fragile ? 'checked' : ''} value="true" /> <span>Fragile</span>
@@ -71,13 +76,25 @@
 						</c:forEach>
 					</select>
 				</div>
-				<div class="input-field col s2">
-					<input name="date_send" value="${dto.date_send}" type="text" class="datepicker" required> <label
-						for="date_send">Date send</label>
+				<div class="input-field col s1">
+					 	<input 
+						name="date_send" type="text" value="${dto.date_send}" class="datepicker" required> <label
+						for="date_send">Date accept</label> 
 				</div>
-				<div class="input-field col s2">
-					<input name="date_accept" value="${dto.date_accept}" type="text" class="datepicker" required> <label
-						for="date_accept">Date accept</label>
+				<div class="input-field col s1">
+					 	<input
+						name="date_send" type="text" value="${dto.date_send}" class="timepicker" required> <label
+						for="date_send">Time accept</label> 
+				</div>
+				<div class="input-field col s1">
+					 	<input 
+						name="date_accept" type="text" value="${dto.date_accept}" class="datepicker" required> <label
+						for="date_accept">Date accept</label> 
+				</div>
+				<div class="input-field col s1">
+					 	<input
+						name="date_accept" type="text" value="${dto.date_accept}" class="timepicker" required> <label
+						for="date_accept">Time accept</label> 
 				</div>
 			</div>
 			<div class="row">

@@ -1,5 +1,6 @@
 package by.grsu.lancevich.postaloffice.web.dto;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 
 public class ItemDto {
@@ -12,6 +13,7 @@ public class ItemDto {
 	private Double height;
 	private Boolean fragile;
 	private Timestamp expiration_date;
+	private Time expiration_time;
 	public Integer getId() {
 		return id;
 	}
@@ -70,5 +72,11 @@ public class ItemDto {
 	}
 	public void setParcel_name(String parcel_name) {
 		this.parcel_name = parcel_name;
+	}
+	public Time getExpiration_time() {
+		return expiration_time;
+	}
+	public void setExpiration_time(Time expiration_time) {
+		this.expiration_time = expiration_time;
 	}
 }

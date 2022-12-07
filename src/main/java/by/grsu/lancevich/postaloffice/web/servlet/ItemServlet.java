@@ -2,9 +2,11 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,6 +94,8 @@ public class ItemServlet extends AbstractListServlet{
 			dto.setWeight(entity.getWeight());
 			dto.setHeight(entity.getHeight());
 			dto.setExpiration_date(entity.getExpiration_date());
+			
+			
 		}
 		req.setAttribute("dto", dto);
 		req.setAttribute("allParcels", getAllParcelsDtos());
@@ -123,6 +127,7 @@ public class ItemServlet extends AbstractListServlet{
 		item.setWidth(Double.parseDouble(req.getParameter("width")));
 		item.setWeight(Double.parseDouble(req.getParameter("weight")));
 		item.setHeight(Double.parseDouble(req.getParameter("height")));
+
 
 		String[] parameters = req.getParameterValues("expiration_date");
 		String date = parameters[0];

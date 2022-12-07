@@ -2,6 +2,8 @@ package by.grsu.lancevich.postaloffice.web.servlet;
 
 import java.io.IOException;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +26,9 @@ import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 
 public class ParcelServlet extends AbstractListServlet{
+	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+	
+	
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
 	private static final IDao<Integer, Person> personDao = PersonDaoImpl.INSTANCE;
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
@@ -140,14 +145,30 @@ public class ParcelServlet extends AbstractListServlet{
 		String receiverIdStr = req.getParameter("receiver_id");
 
 
-		parcel.setDate_send(Timestamp.valueOf(req.getParameter("date_send")));
-		parcel.setDate_accept(Timestamp.valueOf(req.getParameter("date_accept")));
+		String[] parameters_date_accept = req.getParameterValues("date_accept");
+		String date_date_accept = parameters_date_accept[0];
+		String time_date_accept = parameters_date_accept[1].substring(0, 5);
+		String timestamp_date_accept = date_date_accept+"T"+time_date_accept;
+		parcel.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp_date_accept, TIMESTAMP_FORMAT)));
+		
+		String[] parameters_date_send = req.getParameterValues("date_send");
+		String date_date_send = parameters_date_send[0];
+		String time_date_send = parameters_date_send[1].substring(0, 5);
+		String timestamp_date_send = date_date_send+"T"+time_date_send;
+		parcel.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp_date_send, TIMESTAMP_FORMAT)));
+		
 		parcel.setFragile(Boolean.parseBoolean(req.getParameter("fragile")));
 		parcel.setLength(Double.parseDouble(req.getParameter("length")));
 		parcel.setWidth(Double.parseDouble(req.getParameter("width")));
 		parcel.setWeight(Double.parseDouble(req.getParameter("weight")));
 		parcel.setHeight(Double.parseDouble(req.getParameter("height")));
-		parcel.setExpiration_date(Timestamp.valueOf(req.getParameter("expiration_date")));
+
+
+		String[] parameters = req.getParameterValues("expiration_date");
+		String date = parameters[0];
+		String time = parameters[1].substring(0, 5);
+		String timestamp = date+"T"+time;
+		parcel.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp, TIMESTAMP_FORMAT)));
 
 
 		parcel.setAddress_from_id(address_fromIdStr == null ? null : Integer.parseInt(address_fromIdStr));
