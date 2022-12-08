@@ -38,7 +38,7 @@
 						for="weight">Weight</label>
 				</div>
 				<p class="center-align col s4">
-					<label><input type="checkbox" name="actual" ${dto.fragile ? 'checked' : ''} value="true" /> <span>Fragile</span>
+					<label><input type="checkbox" name="fragile" ${dto.fragile ? 'checked' : ''} value="true" /> <span>Fragile</span>
 					</label>
 				</p>
 				<div class="input-field col s2">
@@ -48,8 +48,8 @@
 				</div>
 				<div class="input-field col s2">
 					 	<input placeholder="Until what time is it good"
-						name="expiration_date" type="text" value="${dto.expiration_date}" class="timepicker" required> <label
-						for="expiration_date">Expiration time</label> 
+						name="expiration_time" type="text" value="${dto.expiration_time}" class="timepicker" required> <label
+						for="expiration_time">Expiration time</label> 
 				</div>
 			</div>
 			<div class="row">

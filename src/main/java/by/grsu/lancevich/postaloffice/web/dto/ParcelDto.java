@@ -1,5 +1,7 @@
 package by.grsu.lancevich.postaloffice.web.dto;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 public class ParcelDto {
@@ -8,14 +10,17 @@ public class ParcelDto {
 	private String receiver_name;
 	private Integer sender_id;
 	private String sender_name;
-	private Timestamp date_send;
-	private Timestamp date_accept;
+	private Date date_send_date;
+	private Time date_send_time;
+	private Date date_accept_date;
+	private Time date_accept_time;
 	private Boolean fragile;
 	private Double length;
 	private Double width;
 	private Double height;
 	private Double weight;
-	private Timestamp expiration_date;
+	private Date expiration_date;
+	private Time expiration_time;
 	private Integer address_from_id;
 	private String address_from_name;
 	private Integer address_to_id;
@@ -40,18 +45,6 @@ public class ParcelDto {
 	}
 	public void setSender_id(Integer sender_id) {
 		this.sender_id = sender_id;
-	}
-	public Timestamp getDate_send() {
-		return date_send;
-	}
-	public void setDate_send(Timestamp date_send) {
-		this.date_send = date_send;
-	}
-	public Timestamp getDate_accept() {
-		return date_accept;
-	}
-	public void setDate_accept(Timestamp date_accept) {
-		this.date_accept = date_accept;
 	}
 	public Boolean getFragile() {
 		return fragile;
@@ -83,10 +76,10 @@ public class ParcelDto {
 	public void setWeight(Double weight) {
 		this.weight = weight;
 	}
-	public Timestamp getExpiration_date() {
+	public Date getExpiration_date() {
 		return expiration_date;
 	}
-	public void setExpiration_date(Timestamp expiration_date) {
+	public void setExpiration_date(Date expiration_date) {
 		this.expiration_date = expiration_date;
 	}
 	public Integer getAddress_from_id() {
@@ -139,10 +132,40 @@ public class ParcelDto {
 	}
 	@Override
 	public String toString() {
-		return "Parcel [id=" + id + ", receiver_name=" + receiver_name + ", sender_name=" + sender_name + ", date_send="
-				+ date_send + ", date_accept=" + date_accept + ", fragile=" + fragile + ", length=" + length
+		return "Parcel [id=" + id + ", receiver_name=" + receiver_name + ", sender_name=" + sender_name +
+				", fragile=" + fragile + ", length=" + length
 				+ ", width=" + width + ", height=" + height + ", weight=" + weight + ", expiration_date="
 				+ expiration_date + ", address_from_name=" + address_from_name + ", address_to_name=" + address_to_name
 				+ ", created=" + created + ", updated=" + updated + "]";
+	}
+	public Date getDate_send_date() {
+		return date_send_date;
+	}
+	public void setDate_send_date(Date date_send_date) {
+		this.date_send_date = date_send_date;
+	}
+	public Time getDate_send_time() {
+		return date_send_time;
+	}
+	public void setDate_send_time(Time date_send_time) {
+		this.date_send_time = date_send_time;
+	}
+	public Date getDate_accept_date() {
+		return date_accept_date;
+	}
+	public void setDate_accept_date(Date date_accept_date) {
+		this.date_accept_date = date_accept_date;
+	}
+	public Time getDate_accept_time() {
+		return date_accept_time;
+	}
+	public void setDate_accept_time(Time date_accept_time) {
+		this.date_accept_time = date_accept_time;
+	}
+	public Time getExpiration_time() {
+		return expiration_time;
+	}
+	public void setExpiration_time(Time expiration_time) {
+		this.expiration_time = expiration_time;
 	}
 }

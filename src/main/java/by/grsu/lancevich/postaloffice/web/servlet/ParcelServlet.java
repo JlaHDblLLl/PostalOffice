@@ -26,7 +26,7 @@ import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 
 public class ParcelServlet extends AbstractListServlet{
-	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 	
 	
 	private static final IDao<Integer, Address> addressDao = AddressDaoImpl.INSTANCE;
@@ -51,14 +51,36 @@ public class ParcelServlet extends AbstractListServlet{
 		List<ParcelDto> dtos = parcels.stream().map((entity) -> {
 			ParcelDto dto = new ParcelDto();
 			dto.setId(entity.getId());
-			dto.setDate_send(entity.getDate_send());
-			dto.setDate_accept(entity.getDate_accept());
+			
+			
+			Timestamp ts_send = entity.getDate_send();
+			java.sql.Date date_send = new java.sql.Date(ts_send.getTime());
+			java.sql.Time time_send = new java.sql.Time(ts_send.getTime());
+			dto.setDate_send_time(time_send);
+			dto.setDate_send_date(date_send);
+			
+			
+			Timestamp ts_accept = entity.getDate_accept();
+			java.sql.Date date_accept = new java.sql.Date(ts_accept.getTime());
+			java.sql.Time time_accept = new java.sql.Time(ts_accept.getTime());
+			dto.setDate_accept_time(time_accept);
+			dto.setDate_accept_date(date_accept);
+			
+			
 			dto.setFragile(entity.getFragile());
 			dto.setWeight(entity.getWeight());
 			dto.setLength(entity.getLength());
 			dto.setWidth(entity.getWidth());
 			dto.setHeight(entity.getHeight());
-			dto.setExpiration_date(entity.getExpiration_date());
+
+
+			Timestamp ts = entity.getExpiration_date();
+			java.sql.Date date = new java.sql.Date(ts.getTime());
+			java.sql.Time time = new java.sql.Time(ts.getTime());
+			dto.setExpiration_time(time);
+			dto.setExpiration_date(date);
+			
+			
 			dto.setCreated(entity.getCreated());
 			dto.setUpdated(entity.getUpdated());
 
@@ -94,14 +116,36 @@ public class ParcelServlet extends AbstractListServlet{
 			Integer parcelId = Integer.parseInt(parcelIdStr);
 			Parcel entity = parcelDao.getById(parcelId);
 			dto.setId(entity.getId());
-			dto.setDate_send(entity.getDate_send());
-			dto.setDate_accept(entity.getDate_accept());
+			
+			
+			Timestamp ts_send = entity.getDate_send();
+			java.sql.Date date_send = new java.sql.Date(ts_send.getTime());
+			java.sql.Time time_send = new java.sql.Time(ts_send.getTime());
+			dto.setDate_send_time(time_send);
+			dto.setDate_send_date(date_send);
+			
+			
+			Timestamp ts_accept = entity.getDate_accept();
+			java.sql.Date date_accept = new java.sql.Date(ts_accept.getTime());
+			java.sql.Time time_accept = new java.sql.Time(ts_accept.getTime());
+			dto.setDate_accept_time(time_accept);
+			dto.setDate_accept_date(date_accept);
+			
+			
 			dto.setFragile(entity.getFragile());
 			dto.setLength(entity.getLength());
 			dto.setWidth(entity.getWidth());
 			dto.setWeight(entity.getWeight());
 			dto.setHeight(entity.getHeight());
-			dto.setExpiration_date(entity.getExpiration_date());
+			
+			
+			Timestamp ts = entity.getExpiration_date();
+			java.sql.Date date = new java.sql.Date(ts.getTime());
+			java.sql.Time time = new java.sql.Time(ts.getTime());
+			dto.setExpiration_time(time);
+			dto.setExpiration_date(date);
+			
+			
 			dto.setCreated(entity.getCreated());
 			dto.setUpdated(entity.getUpdated());
 			dto.setAddress_from_id(entity.getAddress_from_id());
@@ -145,17 +189,15 @@ public class ParcelServlet extends AbstractListServlet{
 		String receiverIdStr = req.getParameter("receiver_id");
 
 
-		String[] parameters_date_accept = req.getParameterValues("date_accept");
-		String date_date_accept = parameters_date_accept[0];
-		String time_date_accept = parameters_date_accept[1].substring(0, 5);
+		String date_date_accept = req.getParameter("date_accept_date");
+		String time_date_accept = req.getParameter("date_accept_time");
 		String timestamp_date_accept = date_date_accept+"T"+time_date_accept;
-		parcel.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp_date_accept, TIMESTAMP_FORMAT)));
+		parcel.setDate_accept(Timestamp.valueOf(LocalDateTime.parse(timestamp_date_accept, TIMESTAMP_FORMAT)));
 		
-		String[] parameters_date_send = req.getParameterValues("date_send");
-		String date_date_send = parameters_date_send[0];
-		String time_date_send = parameters_date_send[1].substring(0, 5);
+		String date_date_send = req.getParameter("date_send_date");
+		String time_date_send = req.getParameter("date_send_time");
 		String timestamp_date_send = date_date_send+"T"+time_date_send;
-		parcel.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp_date_send, TIMESTAMP_FORMAT)));
+		parcel.setDate_send(Timestamp.valueOf(LocalDateTime.parse(timestamp_date_send, TIMESTAMP_FORMAT)));
 		
 		parcel.setFragile(Boolean.parseBoolean(req.getParameter("fragile")));
 		parcel.setLength(Double.parseDouble(req.getParameter("length")));
@@ -164,12 +206,10 @@ public class ParcelServlet extends AbstractListServlet{
 		parcel.setHeight(Double.parseDouble(req.getParameter("height")));
 
 
-		String[] parameters = req.getParameterValues("expiration_date");
-		String date = parameters[0];
-		String time = parameters[1].substring(0, 5);
+		String date = req.getParameter("expiration_date");
+		String time = req.getParameter("expiration_time");
 		String timestamp = date+"T"+time;
 		parcel.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp, TIMESTAMP_FORMAT)));
-
 
 		parcel.setAddress_from_id(address_fromIdStr == null ? null : Integer.parseInt(address_fromIdStr));
 		parcel.setAddress_to_id(address_toIdStr == null ? null : Integer.parseInt(address_toIdStr));

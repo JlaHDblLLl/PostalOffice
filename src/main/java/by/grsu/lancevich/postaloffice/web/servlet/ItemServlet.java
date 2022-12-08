@@ -29,7 +29,7 @@ import by.grsu.lancevich.postaloffice.web.dto.ParcelDto;
 import by.grsu.lancevich.postaloffice.web.dto.TableStateDto;
 
 public class ItemServlet extends AbstractListServlet{
-	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+	private DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 	
 	
 	private static final IDao<Integer, Parcel> parcelDao = ParcelDaoImpl.INSTANCE;
@@ -59,7 +59,13 @@ public class ItemServlet extends AbstractListServlet{
 			dto.setLength(entity.getLength());
 			dto.setWidth(entity.getWidth());
 			dto.setHeight(entity.getHeight());
-			dto.setExpiration_date(entity.getExpiration_date());
+			
+			
+			Timestamp ts = entity.getExpiration_date();
+			java.sql.Date date = new java.sql.Date(ts.getTime());
+			java.sql.Time time = new java.sql.Time(ts.getTime());
+			dto.setExpiration_time(time);
+			dto.setExpiration_date(date);
 
 			Parcel parcel = parcelDao.getById(entity.getParcel_id());
 			Person sender = personDao.getById(parcel.getSender_id());
@@ -93,7 +99,13 @@ public class ItemServlet extends AbstractListServlet{
 			dto.setWidth(entity.getWidth());
 			dto.setWeight(entity.getWeight());
 			dto.setHeight(entity.getHeight());
-			dto.setExpiration_date(entity.getExpiration_date());
+			
+			
+			Timestamp ts = entity.getExpiration_date();
+			java.sql.Date date = new java.sql.Date(ts.getTime());
+			java.sql.Time time = new java.sql.Time(ts.getTime());
+			dto.setExpiration_time(time);
+			dto.setExpiration_date(date);
 			
 			
 		}
@@ -127,11 +139,9 @@ public class ItemServlet extends AbstractListServlet{
 		item.setWidth(Double.parseDouble(req.getParameter("width")));
 		item.setWeight(Double.parseDouble(req.getParameter("weight")));
 		item.setHeight(Double.parseDouble(req.getParameter("height")));
-
-
-		String[] parameters = req.getParameterValues("expiration_date");
-		String date = parameters[0];
-		String time = parameters[1].substring(0, 5);
+		
+		String date = req.getParameter("expiration_date");
+		String time = req.getParameter("expiration_time");
 		String timestamp = date+"T"+time;
 		item.setExpiration_date(Timestamp.valueOf(LocalDateTime.parse(timestamp, TIMESTAMP_FORMAT)));
 		

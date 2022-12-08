@@ -1,5 +1,6 @@
 package by.grsu.lancevich.postaloffice.web.dto;
 
+import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -12,7 +13,7 @@ public class ItemDto {
 	private Double width;
 	private Double height;
 	private Boolean fragile;
-	private Timestamp expiration_date;
+	private Date expiration_date;
 	private Time expiration_time;
 	public Integer getId() {
 		return id;
@@ -56,10 +57,10 @@ public class ItemDto {
 	public void setFragile(Boolean fragile) {
 		this.fragile = fragile;
 	}
-	public Timestamp getExpiration_date() {
+	public Date getExpiration_date() {
 		return expiration_date;
 	}
-	public void setExpiration_date(Timestamp expiration_date) {
+	public void setExpiration_date(Date expiration_date) {
 		this.expiration_date = expiration_date;
 	}
 	@Override

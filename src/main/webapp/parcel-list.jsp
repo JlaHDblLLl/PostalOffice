@@ -33,8 +33,8 @@
 					<td><c:out value="${entity.id}" /></td>
 					<td><c:out value="${entity.receiver_name}" /></td>
 					<td><c:out value="${entity.sender_name}" /></td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${entity.date_send}" /></td>
-					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${entity.date_accept}" /></td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${entity.date_send_date}" /></td>
+					<td><fmt:formatDate pattern="yyyy-MM-dd" value="${entity.date_accept_date}" /></td>
 					<td><c:out value="${entity.fragile}" /></td>
 					<td><c:out value="${entity.length}x${entity.width}x${entity.height}" /></td>
 					<td><c:out value="${entity.weight}" /></td>
